@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/Pest_Search"
+        android:title="Pest Search"
+        android:icon="@drawable/ic_menu_camera"
+        />
+    <item
+        android:id="@+id/ShowAll_Pest"
+        android:title="All_Pests"
+        android:icon="@drawable/ic_menu_slideshow"/>
+    <item
+        android:id="@+id/Maps"
+        android:title="Map"
+        android:icon="@drawable/ic_menu_gallery"
+        />
+    <item
+        android:id="@+id/Report"
+        android:title="Report"
+        android:icon="@drawable/ic_menu_camera"/>
+    <item
+        android:id="@+id/About"
+        android:icon="@drawable/ic_menu_map"
+        android:title="About us" />
+</menu>

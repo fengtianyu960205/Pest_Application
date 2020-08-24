@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="5dp"
+            android:padding="8dp"
+            android:background="#fff">
+
+            <ImageView
+                android:id="@+id/PestImage"
+                android:layout_width="100dp"
+                android:layout_height="match_parent"
+                android:background="@drawable/loading"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:orientation="vertical"
+                android:layout_margin="8dp">
+
+                <TextView
+                    android:id="@+id/PestName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Pest Name"
+                    android:textSize="18sp"
+                    android:textStyle="bold"/>
+
+                <TextView
+                    android:id="@+id/PestCategory"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Category"
+                    android:textSize="18sp"
+                    android:textStyle="bold"/>
+
+
+                <TextView
+                    android:id="@+id/PestWeight"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Weight"
+                     />
+
+                <TextView
+                    android:id="@+id/PestHeight"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Height"
+                    />
+
+                <TextView
+                    android:id="@+id/PestCountry"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Movie Country"
+                     />
+
+                <TextView
+                    android:id="@+id/Diet"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Diet"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    />
+
+                <TextView
+                    android:id="@+id/show_Diet"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Diet"
+                    />
+
+
+
+            </LinearLayout>
+
+
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/DealWithThem"
+            android:layout_width="match_parent"
+            android:layout_height="25dp"
+            android:text="How to deal with them"
+            android:textSize="18sp"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/ActualDealWithThem"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Movie Plot"
+             />
+
+
+        <TextView
+            android:id="@+id/Tips"
+            android:layout_width="match_parent"
+            android:layout_height="25dp"
+            android:text="Tips"
+            android:textSize="18sp"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/ActualTips"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Tips"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/Score"
+            android:layout_width="match_parent"
+            android:layout_height="25dp"
+            android:text="Harm Score"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <RatingBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:numStars="5"
+            android:stepSize="0.5"
+            android:id="@+id/rateScoreStar"/>
+
+        <Button
+            android:id="@+id/addToMemoir_btn"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:text="Show Location "
+            android:textSize="16sp"
+            android:layout_marginTop="10dp"/>
+
+        <Button
+            android:id="@+id/addWatchList_btn"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:text="Add Location "
+            android:textSize="16sp" />
+
+
+
+    </LinearLayout>
+</ScrollView>
+
+
+
