@@ -17,12 +17,30 @@ public class NetworkConnection {
     private static final String BASE_URL =
             "https://laynxpb89l.execute-api.us-east-1.amazonaws.com/Pests/getpestinfo";
 
+    private static final String Location_URL =
+            "https://laynxpb89l.execute-api.us-east-1.amazonaws.com/Pests/getpestlocation?pestid=";
 
     // use password and username to get person object
     public String getAllpestInfo() {
         //final String methodPath = "mymoviememoir.person/findByUsernameAndPasswordHash/" + + "/" ;
         Request.Builder builder = new Request.Builder();
         builder.url(BASE_URL );
+        Request request = builder.build();
+        String results = "";
+        try {
+            Response response = client.newCall(request).execute();
+            results = response.body().string();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return results;
+    }
+
+    public String getPestLocationInfo(int id) {
+        //final String methodPath = "mymoviememoir.person/findByUsernameAndPasswordHash/" + + "/" ;
+        String location = Location_URL  + id;
+        Request.Builder builder = new Request.Builder();
+        builder.url(location );
         Request request = builder.build();
         String results = "";
         try {
