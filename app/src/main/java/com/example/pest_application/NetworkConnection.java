@@ -36,9 +36,10 @@ public class NetworkConnection {
         return results;
     }
 
-    public String getPestLocationInfo(int id) {
+    public String getPestLocationInfo(Integer id) {
         //final String methodPath = "mymoviememoir.person/findByUsernameAndPasswordHash/" + + "/" ;
         String location = Location_URL  + id;
+        //String location = "https://laynxpb89l.execute-api.us-east-1.amazonaws.com/Pests/getpestlocation?pestid=1";
         Request.Builder builder = new Request.Builder();
         builder.url(location );
         Request request = builder.build();

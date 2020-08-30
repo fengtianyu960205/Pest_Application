@@ -36,8 +36,8 @@ public class ShowAllPestsViewModel extends ViewModel {
     }
 
     public void GetPestInfoTa(){
-        GetPestInfoTask getmovieTask = new GetPestInfoTask();
-        getmovieTask.execute();
+        GetPestInfoTask getPestInfoTask = new GetPestInfoTask();
+        getPestInfoTask.execute();
     }
 
     private class GetPestInfoTask extends AsyncTask<Void, Void, String> {
@@ -57,7 +57,7 @@ public class ShowAllPestsViewModel extends ViewModel {
                 if (jsonArray != null && jsonArray.length() > 0){
                     for(int i = 0; i < jsonArray.length() ; i++){
                         JSONObject pestInfo = jsonArray.getJSONObject(i);
-                        String[] pest = new String[10];
+                        String[] pest = new String[12];
                         Log.d("sign_in", "json: " + pestInfo);
                         Integer id = pestInfo.getInt("pestId");
                         String idStr = id.toString();
@@ -70,6 +70,9 @@ public class ShowAllPestsViewModel extends ViewModel {
                         String ways = pestInfo.getString("ways");
                         String tips = pestInfo.getString("tips");
                         String imageURL = pestInfo.getString("imageURL");
+                        String threat = pestInfo.getString("threat");
+                        String score = pestInfo.getString("score");
+
                         //Pest pest = new Pest(id,name,height,weight,country,category,diet,ways,tips,imageURL);
                         pest[0] = idStr;
                         pest[1] = name;
@@ -81,6 +84,9 @@ public class ShowAllPestsViewModel extends ViewModel {
                         pest[7] = ways;
                         pest[8] = tips;
                         pest[9] = imageURL;
+                        pest[10] = threat;
+                        pest[11] = score;
+
 
                         list.add(pest);
                     }

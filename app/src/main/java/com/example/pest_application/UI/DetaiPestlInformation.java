@@ -1,11 +1,13 @@
 package com.example.pest_application.UI;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
@@ -17,14 +19,17 @@ import androidx.lifecycle.ViewModelProvider;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.pest_application.R;
+import com.example.pest_application.UI.showAll.MapsActivity_pest;
 import com.example.pest_application.UI.showAll.ShowAllPestsViewModel;
 
 public class DetaiPestlInformation extends Fragment {
-    private TextView PestName,PestCategory,PestWeight,PestHeight,PestCountry,Diet,show_Diet,DealWithThem,ActualDealWithThem,Tips,ActualTips,Score;
+    private TextView PestName,PestCategory,PestWeight,PestHeight,PestCountry,Diet,show_Diet,DealWithThem,ActualDealWithThem,Tips,ActualTips,Score,Threat,show_Threat;
     private ImageView PestImage;
     private DetailViewModel detailViewModel;
     private Context context;
     private RatingBar rateScoreStar;
+    private Button showLocation_btn;
+    private int idnum;
     RequestOptions option =  new RequestOptions().centerCrop().placeholder(R.drawable.loading).error(R.drawable.loading);
 
     @Override
@@ -47,6 +52,9 @@ public class DetaiPestlInformation extends Fragment {
         ActualTips =  view.findViewById(R.id.ActualTips);
         Score = view.findViewById(R.id.Score);
         PestImage = view.findViewById(R.id.PestImage);
+        showLocation_btn = view.findViewById(R.id.showLocation_btn);
+        Threat =  view.findViewById(R.id.Threat);
+        show_Threat = view.findViewById(R.id.show_Threat);
         detailViewModel = new ViewModelProvider(this).get(DetailViewModel.class);
         String name = getArguments().getString("pestName");
         String category = getArguments().getString("PestCategory");
@@ -57,20 +65,36 @@ public class DetaiPestlInformation extends Fragment {
         String diet = getArguments().getString("diet");
         String tips = getArguments().getString("tips");
         String imageURL = getArguments().getString("imageURL");
+        String threat = getArguments().getString("threat");
+        String scoress = getArguments().getString("score");
+        idnum = Integer.parseInt(getArguments().getString("id"));
         PestName.setText(name);
         PestCategory.setText("Category: "+ category);
-        PestWeight.setText(weight+" KG");
-        PestHeight.setText(height+" M");
-        PestCountry.setText("Country: "+country);
+        if(!category.equals("Weeds")){
+            PestWeight.setText("Weight: "+ weight);
+        }
+        else{
+            PestWeight.setVisibility(View.INVISIBLE);
+        }
+        PestHeight.setText("Height: "+ height);
+        PestCountry.setText("Region: "+country);
         show_Diet.setText(diet);
         ActualTips.setText(tips);
         ActualDealWithThem.setText(ways);
+        show_Threat.setText(threat);
         String url = imageURL;
         Glide.with(context).load(url).apply(option).into(PestImage);
-        Double rateScore = 7.0;
-        rateScore = rateScore / 2 ;
+        Double rateScore = Double.parseDouble(scoress);
         float score = rateScore.floatValue();
         rateScoreStar.setRating(score);
+        showLocation_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent= new Intent(context, MapsActivity_pest.class);
+                intent.putExtra("Idnum", idnum);
+                context.startActivity(intent);
+            }
+        });
 
         //String[] strings = detailViewModel.getPestInfo().getValue();
         //detailViewModel.getPestInfo().observe(getViewLifecycleOwner(), new Observer<String[]>() {

@@ -76,6 +76,9 @@ public class ShowAllPestsFragment extends Fragment implements  ShowAllPestsAdapt
         bundle.putString("ways",pests.get(position)[7]);
         bundle.putString("tips",pests.get(position)[8]);
         bundle.putString("imageURL",pests.get(position)[9]);
+        bundle.putString("threat",pests.get(position)[10]);
+        bundle.putString("score",pests.get(position)[11]);
+
         nextFrag.setArguments(bundle);
         ((FragmentActivity)context).getSupportFragmentManager().beginTransaction()
                 .replace(R.id.content_frame, nextFrag, "findThisFragment")
