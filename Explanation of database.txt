@@ -1,0 +1,28 @@
+The Extreme Pest Crew Project:
+
+
+Naming convention & interpretation (Data attributes):
+
+PestName: it is the column to describe the name of each pest.
+
+Weight: it is the column contains int value of pest weight
+
+Height/Length: it is the column contains int value describe the weight or length according to specific species
+
+Threats: it is the column describes the damage caused by a specific species and potential issues raised from it
+
+Region: it is the column describes the origin of a specific species and the distribution in Australia
+
+Category: it is the column describes the category of a typical pest, there are three types of category, which includes invasive species, pest and weeds
+
+Diet: it is the column contains detailed description of what they eat, how is the habitat and habits
+
+Way to deal with: it is the column describes practial solutions and tips for users to dealing with those pests in the field
+
+Did you know: it is the column provides interetsing knowledge and backgrounds of related pests
+
+Image URL: it is a column contains the image URL that used for the application to display the photography of pests
+
+Harfulness to human (0-5): it is column display the rating of each pest, rated from 0 (no harm) to 5 (extremely harmful to human).
+
+
