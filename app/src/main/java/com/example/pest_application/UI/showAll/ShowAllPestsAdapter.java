@@ -51,18 +51,23 @@ public class ShowAllPestsAdapter extends RecyclerView.Adapter<ShowAllPestsAdapte
 
     @Override
     public void onBindViewHolder(@NonNull ShowAllPestsAdapter.Holder holder, int position) {
-        String[] currentPest = pestList.get(position);
-        holder.PestName.setText(currentPest[1]);
-        holder.category.setText(currentPest[5]);
-        String url = currentPest[9];
-        Glide.with(context).load(url).apply(option).into(holder.Image1);
+        if(pestList.size() !=0) {
+            String[] currentPest = pestList.get(position);
+            holder.PestName.setText(currentPest[1]);
+            holder.category.setText(currentPest[5]);
+            String url = currentPest[9];
+            Glide.with(context).load(url).apply(option).into(holder.Image1);
+        }
 
 
     }
 
     @Override
     public int getItemCount() {
+
         return pestList.size();
+
+
     }
 
     public void setPest(ArrayList<String[]> pests) {

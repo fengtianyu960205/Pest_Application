@@ -38,6 +38,11 @@
             android:name=".UI.Map.MapsActivity"
             android:label="@string/title_activity_maps" />
         <activity
+            android:name=".UI.showAll.showActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+
+        </activity>
+        <activity
             android:name=".MainActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>

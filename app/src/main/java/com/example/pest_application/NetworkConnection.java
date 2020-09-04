@@ -20,6 +20,11 @@ public class NetworkConnection {
     private static final String Location_URL =
             "https://laynxpb89l.execute-api.us-east-1.amazonaws.com/Pests/getpestlocation?pestid=";
 
+    private static final String searchPestBYState_URL =
+            "https://laynxpb89l.execute-api.us-east-1.amazonaws.com/Pests/searchpestbystate?state=";
+
+    private static final String searchPestBYCategoryName_URL =
+            "https://laynxpb89l.execute-api.us-east-1.amazonaws.com/Pests/searchpestbycategoryname";
     // use password and username to get person object
     public String getAllpestInfo() {
         //final String methodPath = "mymoviememoir.person/findByUsernameAndPasswordHash/" + + "/" ;
@@ -39,6 +44,40 @@ public class NetworkConnection {
     public String getPestLocationInfo(Integer id) {
         //final String methodPath = "mymoviememoir.person/findByUsernameAndPasswordHash/" + + "/" ;
         String location = Location_URL  + id;
+        //String location = "https://laynxpb89l.execute-api.us-east-1.amazonaws.com/Pests/getpestlocation?pestid=1";
+        Request.Builder builder = new Request.Builder();
+        builder.url(location );
+        Request request = builder.build();
+        String results = "";
+        try {
+            Response response = client.newCall(request).execute();
+            results = response.body().string();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return results;
+    }
+
+    public String searchPestBYState(String state) {
+        //final String methodPath = "mymoviememoir.person/findByUsernameAndPasswordHash/" + + "/" ;
+        String location = searchPestBYState_URL  + state;
+        //String location = "https://laynxpb89l.execute-api.us-east-1.amazonaws.com/Pests/getpestlocation?pestid=1";
+        Request.Builder builder = new Request.Builder();
+        builder.url(location );
+        Request request = builder.build();
+        String results = "";
+        try {
+            Response response = client.newCall(request).execute();
+            results = response.body().string();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return results;
+    }
+
+    public String searchPestBYCategoryName(String Name) {
+        //final String methodPath = "mymoviememoir.person/findByUsernameAndPasswordHash/" + + "/" ;
+        String location = searchPestBYState_URL  + Name;
         //String location = "https://laynxpb89l.execute-api.us-east-1.amazonaws.com/Pests/getpestlocation?pestid=1";
         Request.Builder builder = new Request.Builder();
         builder.url(location );

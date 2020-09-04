@@ -18,6 +18,7 @@ import com.example.pest_application.UI.Map.MapsActivity;
 import com.example.pest_application.UI.Report.ReportFragment;
 import com.example.pest_application.UI.Search.Search_pestFragment;
 import com.example.pest_application.UI.showAll.ShowAllPestsFragment;
+import com.example.pest_application.UI.showAll.showActivity;
 import com.google.android.material.navigation.NavigationView;
 
 import android.content.Intent;

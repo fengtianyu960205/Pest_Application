@@ -1,6 +1,7 @@
 package com.example.pest_application.UI.showAll;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -21,6 +22,7 @@ import com.example.pest_application.MainActivity;
 import com.example.pest_application.Pest;
 import com.example.pest_application.R;
 import com.example.pest_application.UI.DetaiPestlInformation;
+import com.example.pest_application.UI.Map.MapsActivity;
 
 import java.util.ArrayList;
 
@@ -78,12 +80,13 @@ public class ShowAllPestsFragment extends Fragment implements  ShowAllPestsAdapt
         bundle.putString("imageURL",pests.get(position)[9]);
         bundle.putString("threat",pests.get(position)[10]);
         bundle.putString("score",pests.get(position)[11]);
+        //nextFrag.setArguments(bundle);
 
-        nextFrag.setArguments(bundle);
-        ((FragmentActivity)context).getSupportFragmentManager().beginTransaction()
+        startActivity(new Intent(context, showActivity.class).putExtra("info",bundle));
+        /*((FragmentActivity)context).getSupportFragmentManager().beginTransaction()
                 .replace(R.id.content_frame, nextFrag, "findThisFragment")
                 .addToBackStack(null)
-                .commit();
+                .commit();*/
     }
 
    /* @Override
