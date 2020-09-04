@@ -131,7 +131,7 @@
             android:id="@+id/Tips"
             android:layout_width="match_parent"
             android:layout_height="25dp"
-            android:text="Do you konw ? "
+            android:text="Interesting Fact "
             android:textSize="18sp"
             android:textStyle="bold"/>
 

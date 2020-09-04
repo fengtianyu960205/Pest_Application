@@ -1,6 +1,8 @@
 package com.example.pest_application.UI.Report;
 
 import android.os.Bundle;
+import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,5 +20,24 @@ public class ReportFragment extends Fragment {
         //textView=view.findViewById(R.id.tv);
         //textView.setText("This is HOME");
         return view;
+    }
+
+    @Override
+    public void onResume() {
+
+        super.onResume();
+        getView().setFocusableInTouchMode(true);
+        getView().requestFocus();
+        getView().setOnKeyListener(new View.OnKeyListener(){
+            @Override
+            public boolean onKey(View view, int keyCode, KeyEvent keyEvent){
+                if (keyCode == KeyEvent.KEYCODE_BACK && keyEvent.getAction() == KeyEvent.ACTION_UP) {
+                    Log.d("sign_in", "json: " + "dsdsdsdsdds");
+                    return true;
+                }
+                return false;
+            }
+        });
+
     }
 }

@@ -38,7 +38,7 @@ public class ShowAllPestsFragment extends Fragment implements  ShowAllPestsAdapt
                              Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.show_allpest, container, false);
-        ((MainActivity) getActivity()).setToolBarTitle("All Pests");
+       // ((MainActivity) getActivity()).setToolBarTitle("All Pests");
         context = getActivity();
         RecyclerView recyclerView = view.findViewById(R.id.recyclerAllpest);
         showAllPestsAdapter = new ShowAllPestsAdapter(pests,context,this);
