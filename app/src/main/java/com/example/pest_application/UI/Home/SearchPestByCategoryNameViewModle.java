@@ -51,11 +51,11 @@ public class SearchPestByCategoryNameViewModle extends ViewModel {
             try {
                 JSONObject jsonObject = new JSONObject(result);
                 JSONArray jsonArray = jsonObject.getJSONArray("Pests");
-
+                list = new ArrayList<>();
                 if (jsonArray != null && jsonArray.length() > 0){
                     for(int i = 0; i < jsonArray.length() ; i++){
                         JSONObject pestInfo = jsonArray.getJSONObject(i);
-                        list = new ArrayList<>();
+
                         String[] pest = new String[12];
                         Log.d("sign_in", "json: " + pestInfo);
                         Integer id = pestInfo.getInt("pestId");

@@ -1,6 +1,8 @@
 package com.example.pest_application.UI;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -8,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
@@ -28,8 +31,10 @@ public class DetaiPestlInformation extends Fragment {
     private DetailViewModel detailViewModel;
     private Context context;
     private RatingBar rateScoreStar;
-    private Button showLocation_btn;
+    private Button showLocation_btn,addLocation_btn;
     private int idnum;
+    private EditText inputAddress,inputState;
+    private String strinputAddress,strinputState;
     RequestOptions option =  new RequestOptions().centerCrop().placeholder(R.drawable.loading).error(R.drawable.loading);
 
     @Override
@@ -55,6 +60,7 @@ public class DetaiPestlInformation extends Fragment {
         showLocation_btn = view.findViewById(R.id.showLocation_btn);
         Threat =  view.findViewById(R.id.Threat);
         show_Threat = view.findViewById(R.id.show_Threat);
+        addLocation_btn = view.findViewById(R.id.addLocation_btn);
         detailViewModel = new ViewModelProvider(this).get(DetailViewModel.class);
         String name = getArguments().getString("pestName");
         String category = getArguments().getString("PestCategory");
@@ -96,6 +102,39 @@ public class DetaiPestlInformation extends Fragment {
             }
         });
 
+        addLocation_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+                builder.setTitle("Title");
+
+                View viewInflated = LayoutInflater.from(getContext()).inflate(R.layout.addpestaddress, (ViewGroup) getView(), false);
+
+                inputAddress = (EditText) viewInflated.findViewById(R.id.inputAddress);
+                inputState = (EditText) viewInflated.findViewById(R.id.inputState);
+
+                builder.setView(viewInflated);
+
+
+                builder.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                        strinputAddress = inputAddress.getText().toString();
+                        strinputState = inputState.getText().toString();
+                    }
+                });
+                builder.setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                });
+
+                builder.show();
+            }
+        });
+
         //String[] strings = detailViewModel.getPestInfo().getValue();
         //detailViewModel.getPestInfo().observe(getViewLifecycleOwner(), new Observer<String[]>() {
           //  @Override
@@ -117,4 +156,5 @@ public class DetaiPestlInformation extends Fragment {
 
         return view;
     }
+
 }

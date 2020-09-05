@@ -51,10 +51,11 @@ public class SearchPestByStateViewModel extends ViewModel {
             try {
                 JSONObject jsonObject = new JSONObject(result);
                 JSONArray jsonArray = jsonObject.getJSONArray("Pests");
-
+                list = new ArrayList<>();
                 if (jsonArray != null && jsonArray.length() > 0){
                     for(int i = 0; i < jsonArray.length() ; i++){
                         JSONObject pestInfo = jsonArray.getJSONObject(i);
+
                         String[] pest = new String[12];
                         Log.d("sign_in", "json: " + pestInfo);
                         Integer id = pestInfo.getInt("pestId");
