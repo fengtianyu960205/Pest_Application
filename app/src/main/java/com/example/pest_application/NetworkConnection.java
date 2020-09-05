@@ -24,7 +24,7 @@ public class NetworkConnection {
             "https://laynxpb89l.execute-api.us-east-1.amazonaws.com/Pests/searchpestbystate?state=";
 
     private static final String searchPestBYCategoryName_URL =
-            "https://laynxpb89l.execute-api.us-east-1.amazonaws.com/Pests/searchpestbycategoryname";
+            "https://laynxpb89l.execute-api.us-east-1.amazonaws.com/Pests/searchpestbycategoryname?CategoryName=";
     // use password and username to get person object
     public String getAllpestInfo() {
         //final String methodPath = "mymoviememoir.person/findByUsernameAndPasswordHash/" + + "/" ;
@@ -77,7 +77,7 @@ public class NetworkConnection {
 
     public String searchPestBYCategoryName(String Name) {
         //final String methodPath = "mymoviememoir.person/findByUsernameAndPasswordHash/" + + "/" ;
-        String location = searchPestBYState_URL  + Name;
+        String location = searchPestBYCategoryName_URL  + Name;
         //String location = "https://laynxpb89l.execute-api.us-east-1.amazonaws.com/Pests/getpestlocation?pestid=1";
         Request.Builder builder = new Request.Builder();
         builder.url(location );

@@ -41,7 +41,7 @@ public class SearchPestByStateViewModel extends ViewModel {
     private class searchPestByStateTask extends AsyncTask<String, Void, String> {
         @Override
         protected String doInBackground(String... params) {
-            Log.d("sign_in", "json: " +params[0] );
+            //Log.d("sign_in", "json: " +params[0] );
             return networkConnection.searchPestBYState(params[0]);
         }
 

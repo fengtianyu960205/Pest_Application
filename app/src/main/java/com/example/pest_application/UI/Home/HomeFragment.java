@@ -1,11 +1,13 @@
 package com.example.pest_application.UI.Home;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -20,8 +22,9 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.pest_application.R;
+import com.example.pest_application.UI.DetaiPestlInformation;
 import com.example.pest_application.UI.showAll.ShowAllPestsAdapter;
-import com.example.pest_application.UI.showAll.ShowAllPestsViewModel;
+import com.example.pest_application.UI.showAll.showActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,7 +39,8 @@ public class HomeFragment extends Fragment implements  ShowAllPestsAdapter.OnIte
     private ArrayList<String[]> pests = new ArrayList<>();
     private ShowAllPestsAdapter adpater;
     private SearchPestByStateViewModel searchPestByStateViewModel;
-    private String state;
+    private SearchPestByCategoryNameViewModle searchPestByCategoryNameViewModel;
+    private String state = "State";
     private EditText search_Name;
     private int flag;
 
@@ -80,28 +84,28 @@ public class HomeFragment extends Fragment implements  ShowAllPestsAdapter.OnIte
         });
         //final String state = filter_state.getSelectedItem().toString();
         searchPestByStateViewModel = new ViewModelProvider(this).get(SearchPestByStateViewModel.class);
+        searchPestByCategoryNameViewModel = new ViewModelProvider(this).get(SearchPestByCategoryNameViewModle.class);
         recyclerView = view.findViewById(R.id.recyclerSearchAllpest);
         adpater = new ShowAllPestsAdapter(pests,context,this);
         recyclerView.setAdapter(adpater);
         recyclerView.setLayoutManager(new LinearLayoutManager(context));
         recyclerView.setHasFixedSize(true);
 
-        if(search_Name.getText().toString().trim().length() == 0 && state != "State"){
-            flag = 1;
-        }
-        else if (search_Name.getText().toString().trim().length() !=0 && state != "State"){
-            flag = 3;
-        }
-        else if (search_Name.getText().toString().trim().length() !=0 && state == "State"){
-            flag = 2;
-        }
-        else{
-            flag = 4;
-        }
+
 
         searchPest_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                closeKeyBoard();
+                if(search_Name.getText().toString().trim().length() == 0 && !state.equals("State") ){
+                    flag = 1;
+                }
+                else if (search_Name.getText().toString().trim().length() !=0 ){
+                    flag = 2;
+                }
+                else{
+                    flag = 3;
+                }
                 //Log.d("sign_in", "json: " +state);
                 if (flag == 1){
                     searchPestByStateViewModel.GetPestInfoTa(state);
@@ -110,15 +114,43 @@ public class HomeFragment extends Fragment implements  ShowAllPestsAdapter.OnIte
                     public void onChanged(ArrayList arrayList) {
                         pests = arrayList;
                         if (pests.size() != 0) {
+                            //Log.d("sign_in", "json: " +state);
                             resultnotfound.setVisibility(View.GONE);
                             adpater.setPest(pests);
                         } else {
+                            //Log.d("sign_in", "json: " +state);
                             pests = new ArrayList<>();
                             adpater.setPest(pests);
                             resultnotfound.setVisibility(View.VISIBLE);
                         }
                     }
                      });
+                }
+                else if(flag == 2){
+                    searchPestByCategoryNameViewModel.GetPestInfoTa(search_Name.getText().toString().trim()+","+state);
+                    searchPestByCategoryNameViewModel.getPestInfo().observe(getViewLifecycleOwner(), new Observer<ArrayList>() {
+                        //Log.d("sign_in", "json: " +flag);
+                        @Override
+                        public void onChanged(ArrayList arrayList) {
+                            pests = arrayList;
+                            if (pests.size() != 0) {
+                                Log.d("sign_in", "jssdsdsdsdson: " +pests.size());
+                                resultnotfound.setVisibility(View.GONE);
+                                adpater.setPest(pests);
+                            } else {
+                                //Log.d("sign_in", "json: " +4);
+                                pests = new ArrayList<>();
+                                adpater.setPest(pests);
+                                resultnotfound.setVisibility(View.VISIBLE);
+                            }
+
+                        }
+                    });
+                }
+                else{
+                    pests = new ArrayList<>();
+                    adpater.setPest(pests);
+                    resultnotfound.setVisibility(View.VISIBLE);
                 }
             }
         });
@@ -130,8 +162,29 @@ public class HomeFragment extends Fragment implements  ShowAllPestsAdapter.OnIte
         return view;
     }
 
+    public void closeKeyBoard(){
+        InputMethodManager inputManager = (InputMethodManager)getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+        inputManager.hideSoftInputFromWindow(getActivity().getCurrentFocus().getWindowToken(),
+                0);
+    }
+
     @Override
     public void whenClickIt(int position) {
-
+        //DetaiPestlInformation nextFrag= new DetaiPestlInformation();
+        Bundle bundle=new Bundle();
+        Log.d("sign_in", "ddddd: " + pests.get(position)[1]);
+        bundle.putString("id",pests.get(position)[0]);
+        bundle.putString("pestName",pests.get(position)[1]);
+        bundle.putString("height",pests.get(position)[2]);
+        bundle.putString("weight",pests.get(position)[3]);
+        bundle.putString("country",pests.get(position)[4]);
+        bundle.putString("PestCategory",pests.get(position)[5]);
+        bundle.putString("diet",pests.get(position)[6]);
+        bundle.putString("ways",pests.get(position)[7]);
+        bundle.putString("tips",pests.get(position)[8]);
+        bundle.putString("imageURL",pests.get(position)[9]);
+        bundle.putString("threat",pests.get(position)[10]);
+        bundle.putString("score",pests.get(position)[11]);
+        startActivity(new Intent(context, showActivity.class).putExtra("info",bundle));
     }
 }

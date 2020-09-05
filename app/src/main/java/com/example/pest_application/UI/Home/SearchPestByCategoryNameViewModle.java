@@ -15,13 +15,13 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-public class SearchPestByCategoryName extends ViewModel {
+public class SearchPestByCategoryNameViewModle extends ViewModel {
     NetworkConnection networkConnection = new NetworkConnection();
     private MutableLiveData<ArrayList> pestInfo;
     private Context context;
     //ArrayList<Pest> list = new ArrayList<>();
     ArrayList<String[]> list = new ArrayList<>();
-    public SearchPestByCategoryName(){
+    public SearchPestByCategoryNameViewModle(){
         pestInfo = new MutableLiveData<>();
     }
 
@@ -34,7 +34,7 @@ public class SearchPestByCategoryName extends ViewModel {
     }
 
     public void GetPestInfoTa(String Name){
-        SearchPestByCategoryName.searchPestByCategoryNameTask searchPestByCategoryNameTask = new SearchPestByCategoryName.searchPestByCategoryNameTask();
+        SearchPestByCategoryNameViewModle.searchPestByCategoryNameTask searchPestByCategoryNameTask = new SearchPestByCategoryNameViewModle.searchPestByCategoryNameTask();
         searchPestByCategoryNameTask.execute(Name);
     }
 
@@ -55,6 +55,7 @@ public class SearchPestByCategoryName extends ViewModel {
                 if (jsonArray != null && jsonArray.length() > 0){
                     for(int i = 0; i < jsonArray.length() ; i++){
                         JSONObject pestInfo = jsonArray.getJSONObject(i);
+                        list = new ArrayList<>();
                         String[] pest = new String[12];
                         Log.d("sign_in", "json: " + pestInfo);
                         Integer id = pestInfo.getInt("pestId");
