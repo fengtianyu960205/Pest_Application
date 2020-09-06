@@ -1,19 +1,23 @@
 package com.example.pest_application.UI;
 
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.InputType;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
@@ -33,8 +37,10 @@ public class DetaiPestlInformation extends Fragment {
     private RatingBar rateScoreStar;
     private Button showLocation_btn,addLocation_btn;
     private int idnum;
-    private EditText inputAddress,inputState;
-    private String strinputAddress,strinputState;
+    private EditText inputAddress,inputState,inputCity;
+    private String strinputAddress,strinputState,strinputCity,pestID;
+    private AddPestLocationViewModel addPestLocationViewModel;
+    private addtolocationtoDB addtoDBViewModel;
     RequestOptions option =  new RequestOptions().centerCrop().placeholder(R.drawable.loading).error(R.drawable.loading);
 
     @Override
@@ -42,6 +48,7 @@ public class DetaiPestlInformation extends Fragment {
                              Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.movieview_fragment, container, false);
+        addPestLocationViewModel =  new ViewModelProvider(this).get(AddPestLocationViewModel.class);
         context = getActivity();
         rateScoreStar = view.findViewById(R.id.rateScoreStar);
         PestName =  view.findViewById(R.id.PestName);
@@ -62,6 +69,8 @@ public class DetaiPestlInformation extends Fragment {
         show_Threat = view.findViewById(R.id.show_Threat);
         addLocation_btn = view.findViewById(R.id.addLocation_btn);
         detailViewModel = new ViewModelProvider(this).get(DetailViewModel.class);
+        addtoDBViewModel = new ViewModelProvider(this).get(addtolocationtoDB.class);
+        pestID = getArguments().getString("id");
         String name = getArguments().getString("pestName");
         String category = getArguments().getString("PestCategory");
         String height = getArguments().getString("height");
@@ -106,22 +115,52 @@ public class DetaiPestlInformation extends Fragment {
             @Override
             public void onClick(View v) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-                builder.setTitle("Title");
-
+                builder.setTitle("Location");
+                //final Dialog dialog = new Dialog(getActivity());
+                //dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                //dialog.setCancelable(false);
+                //dialog.setContentView(R.layout.addpestaddress);
                 View viewInflated = LayoutInflater.from(getContext()).inflate(R.layout.addpestaddress, (ViewGroup) getView(), false);
 
                 inputAddress = (EditText) viewInflated.findViewById(R.id.inputAddress);
                 inputState = (EditText) viewInflated.findViewById(R.id.inputState);
+                inputCity= (EditText) viewInflated.findViewById(R.id.inputCity);
 
+                //final EditText input = new EditText(context);
+
+                //input.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+               // builder.setView(input);
                 builder.setView(viewInflated);
-
 
                 builder.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.dismiss();
-                        strinputAddress = inputAddress.getText().toString();
-                        strinputState = inputState.getText().toString();
+                        strinputAddress = inputAddress.getText().toString().trim();
+                        strinputState = inputState.getText().toString().trim();
+                        strinputCity = inputCity.getText().toString().trim();
+
+                        addPestLocationViewModel.getPestLocationTask(strinputAddress+" "+strinputCity+" "+strinputState);
+                        addPestLocationViewModel.getLiveDatapestLngLog().observe(getViewLifecycleOwner(), new Observer<Double[]>() {
+                            @Override
+                            public void onChanged(Double[] doubles) {
+                                //Log.d("sign_up", "json: " + doubles[0]);
+                                if(doubles[0] != 0.0 && doubles[1] != 0.0 ){
+                                    Toast toast = Toast.makeText(context, "add location successfully ", Toast.LENGTH_SHORT);
+                                    toast.show();
+                                    String location = doubles[1].toString()+","+doubles[0].toString()+","+strinputCity+","+strinputState+","+pestID;
+                                    addtoDBViewModel.addTask(location);
+                                }
+                                else{
+                                    Toast toast = Toast.makeText(context, "can not find this location ", Toast.LENGTH_SHORT);
+                                    toast.show();
+
+                                }
+                            }
+                        });
+
+
+
                     }
                 });
                 builder.setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
@@ -132,27 +171,11 @@ public class DetaiPestlInformation extends Fragment {
                 });
 
                 builder.show();
+               // dialog.show();
             }
         });
 
-        //String[] strings = detailViewModel.getPestInfo().getValue();
-        //detailViewModel.getPestInfo().observe(getViewLifecycleOwner(), new Observer<String[]>() {
-          //  @Override
-          //  public void onChanged(String[] strings) {
-               // Log.d("sign_in", "json: " + strings);
-                //PestName.setText(strings[1]);
-                //PestCategory.setText(strings[5]);
-                //PestWeight.setText(strings[3]);
-                //PestHeight.setText(strings[2]);
-                //PestCountry.setText(strings[4]);
-                //show_Diet.setText(strings[6]);
-                //ActualDealWithThem.setText(strings[7]);
-               // ActualTips.setText(strings[8]);
-               // String url = strings[9];
-               // Glide.with(context).load(url).apply(option).into(PestImage);
 
-           // }
-       // });*/
 
         return view;
     }

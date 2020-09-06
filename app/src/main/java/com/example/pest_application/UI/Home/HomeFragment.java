@@ -96,12 +96,13 @@ public class HomeFragment extends Fragment implements  ShowAllPestsAdapter.OnIte
         searchPest_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                closeKeyBoard();
+
                 if(search_Name.getText().toString().trim().length() == 0 && !state.equals("State") ){
                     flag = 1;
                 }
                 else if (search_Name.getText().toString().trim().length() !=0 ){
                     flag = 2;
+                    closeKeyBoard();
                 }
                 else{
                     flag = 3;
@@ -127,6 +128,7 @@ public class HomeFragment extends Fragment implements  ShowAllPestsAdapter.OnIte
                      });
                 }
                 else if(flag == 2){
+
                     searchPestByCategoryNameViewModel.GetPestInfoTa(search_Name.getText().toString().trim()+","+state);
                     searchPestByCategoryNameViewModel.getPestInfo().observe(getViewLifecycleOwner(), new Observer<ArrayList>() {
                         //Log.d("sign_in", "json: " +flag);
