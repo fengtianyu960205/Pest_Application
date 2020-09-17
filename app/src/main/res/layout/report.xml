@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/welcometoreport"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+
+                android:layout_gravity="center_horizontal"
+                android:textSize="20sp"
+                android:text="Distribution of Pest and Weeds"
+                android:textStyle="bold"
+                />
+
+            <com.anychart.AnyChartView
+                android:id="@+id/pieChart"
+                android:layout_marginTop="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="300dp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/piechartanalysis"
+                android:layout_marginTop="10dp"
+                android:text="According to the pie chart, about a quarter of pests and weeds are distributed in NSW. It is likely to indicates that most of pests and woody weeds were sighted in NSW. It is also interesting to find out that North-east (QLD) and South-east (NSW) of Australia are the most popular habitat to pests.
+"/>
+
+
+            <TextView
+                android:id="@+id/barchart"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:layout_gravity="center_horizontal"
+                android:textSize="20sp"
+                android:text="Number of Pests and Weeds in State Level"
+                android:textStyle="bold"
+                />
+
+            <com.github.mikephil.charting.charts.BarChart
+                android:id="@+id/bargraph"
+                android:layout_width="match_parent"
+                android:layout_height="400dp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/barchartanalysis"
+                android:layout_marginTop="10dp"
+                android:text="According to the bar chart above, we can see the distribution of the numbers of 3 different types of species in all states. Generally, the species distribution in New South Wales and Queensland is more extensive, and for these two states, weeds are more abundant than pests. Looking at other states, we can also find that states with more weeds have relatively more pests. Perhaps we can guess that the number of weeds has a certain positive correlation with these pests. Of course, if you want more accurate relationship predictions, you need more data and models."/>
+
+
+
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>

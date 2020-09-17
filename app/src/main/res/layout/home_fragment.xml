@@ -13,7 +13,7 @@
         android:layout_width="300dp"
         android:layout_height="300dp"
         android:layout_marginTop="-100dp"
-        android:layout_marginLeft="80dp"
+        android:layout_marginLeft="70dp"
         android:src="@drawable/logo" />
 
 
@@ -41,19 +41,32 @@
             android:layout_marginTop="10dp"
             android:orientation="horizontal">
 
-            <ImageView
+            <!--<ImageView
                 android:id="@+id/search_image"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_marginLeft="10dp"
-                android:src="@drawable/ic_search_black_24dp" />
 
-            <EditText
+            <SearchView
+                android:id="@+id/searchView"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:iconifiedByDefault="false"
+                android:queryHint="请输入搜索内容" />
+
+           <EditText
                 android:id="@+id/search_pestName"
-                android:layout_width="220dp"
+               android:layout_marginLeft="-200dp"
+                android:layout_width="200dp"
                 android:layout_height="50dp"
                 android:hint="pest name/city"
-                />
+                />-->
+            <SearchView
+                android:id="@+id/searchView"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:iconifiedByDefault="false"
+                android:queryHint="pest name or city" />
 
             <Spinner
                 android:id="@+id/filter_state"
@@ -79,19 +92,53 @@
             android:textSize="20sp"
             android:visibility="gone"/>
 
-
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerSearchAllpest"
+            android:id="@+id/showPestHint"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            tools:listitem = "@layout/show_allpest_adapter"/>
+            tools:listitem = "@layout/showpesttext"
+            android:layout_marginLeft="60dp"
+            android:layout_marginRight="60dp"/>
 
 
-    </LinearLayout>
+        <TextView
+            android:id="@+id/mostSearch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_gravity="center_horizontal"
+            android:textSize="20sp"
+            android:text="Most User Search "
+            android:textStyle="bold"
+            />
+
+         <androidx.recyclerview.widget.RecyclerView
+             android:id="@+id/recyclerSearchAllpest"
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             tools:listitem = "@layout/show_allpest_adapter"
+             android:layout_marginTop="10dp"/>
+
+
+
+        <!--<androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerMostUserSearch"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:listitem = "@layout/show_allpest_adapter"/>-->
 
 
 
 
 
 
-</LinearLayout>
+
+
+     </LinearLayout>
+
+
+
+
+
+
+ </LinearLayout>

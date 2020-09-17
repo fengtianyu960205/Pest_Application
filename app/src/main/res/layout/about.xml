@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+
+            <TextView
+                android:id="@+id/aboutTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textSize="20sp"
+                android:text="About Extreme Pests Crew Android App"
+                android:textStyle="bold"
+                />
+
+            <TextView
+                android:layout_marginTop="10dp"
+                android:id="@+id/aboutTitletext"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="        Pests, invasive specious and woody weeds cause enormous damage in Australia to the environment, agriculture and society. The Department of Environment and Heritage states that invasive wild animals cause immense damage to soils, native plants and species. The natural habitats of one of 20 native species has been destroyed by invasive animals. Which is important to ensure tourists can understand the dangers of invasive species and pests as well as learning ways to avoid significant damage to their safety and the environment.\n
+        The Extreme Pests Crew app offers you an integrated solution to deal with wildlife and pests. You can simply enter an address to check out pests around desired destination and tips for you to be well-prepared before the journey.\n
+         This App can be used at any time to record address of pest animal sightings. Your record will be uploaded to the Extreme Pests Crew database, which will display your added address once you refresh the map.\n
+        This App has been also designed as a wiki for people who interested in zoology and seek for a comprehensive pest information hub.
+        "
+                />
+
+            <TextView
+                android:id="@+id/FutureUpdates"
+                android:layout_marginTop="15dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textSize="20sp"
+                android:text="Future Updates"
+                android:textStyle="bold"
+                />
+
+            <TextView
+                android:layout_marginTop="10dp"
+                android:id="@+id/FutureUpdatestext"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="       Future updates of the App will contain an quiz system to support user knowledge checking, and improved map page with pest distribution data, and optimized user interface as well as new functions (Filter option, search bar). Please provide feedback to extremepestcrew@gmail.com.au\n
+       Please check the Google Store periodically to ensure you have the lastest version installed."
+                />
+
+
+            <TextView
+                android:id="@+id/Acknowledgements"
+                android:layout_marginTop="15dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textSize="20sp"
+                android:text="Acknowledgements"
+                android:textStyle="bold"
+                />
+
+            <TextView
+                android:layout_marginTop="10dp"
+                android:id="@+id/Acknowledgementstext"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="      This Android app has been created by the Extreme Crew for the topic of Pest In Our Bushland from the Industry Experience unit of the Monash University with support from the IE studio and industry mentors."
+                />
+
+            <TextView
+                android:id="@+id/Project_Manager"
+                android:layout_marginTop="15dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textSize="20sp"
+                android:text="Project Manager"
+                android:textStyle="bold"
+                />
+
+            <TextView
+                android:layout_marginTop="10dp"
+                android:id="@+id/Project_ManagerText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="      Xinran Wang, Fengtian Yu, Pengfei Wei, Jingwei Guo, Extreme Crew for Pest In Our Bushland"
+                />
+
+            <TextView
+                android:id="@+id/Technology"
+                android:layout_marginTop="15dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textSize="20sp"
+                android:text="Technology"
+                android:textStyle="bold"
+                />
+
+            <TextView
+                android:layout_marginTop="10dp"
+                android:id="@+id/TechnologyText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Version 2.0"/>
+
+            <TextView
+                android:id="@+id/Contact"
+                android:layout_marginTop="15dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textSize="20sp"
+                android:text="Contact Us"
+                android:textStyle="bold"
+                />
+
+            <TextView
+                android:layout_marginTop="10dp"
+                android:id="@+id/ContactText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="      Please contact us by E-mail extremepestcrew@gmail.com.au for any query or issue about this app."/>
+
+            <TextView
+                android:id="@+id/Disclaimer"
+                android:layout_marginTop="15dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textSize="20sp"
+                android:text="Disclaimer"
+                android:textStyle="bold"
+                />
+
+            <TextView
+                android:layout_marginTop="10dp"
+                android:id="@+id/DisclaimerText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="         EXTREMEPESTSCREW does not warrant the accuracy or completeness of information on this page and any person using or replying upon such information does so on the basis that \n
+        EXTREMEPESTSCREW shall bear no responsibility or liability whatsoever for any errors, faults, defects or omissions in the information."/>
+
+
+
+
+
+
+
+        </LinearLayout>
+
+
+    </ScrollView>
+
+
+
+
+</LinearLayout>

@@ -5,7 +5,7 @@
 
 <ScrollView
     android:layout_width="match_parent"
-    android:layout_height="600dp">
+    android:layout_height="800dp">
 
 
     <LinearLayout
@@ -35,6 +35,8 @@
                 android:orientation="vertical"
                 android:layout_margin="8dp">
 
+
+
                 <TextView
                     android:id="@+id/PestName"
                     android:layout_width="wrap_content"
@@ -51,6 +53,15 @@
                     android:textSize="18sp"
                     android:textStyle="bold"/>
 
+                <TextView
+                    android:id="@+id/PestbigWeight"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Weight:"
+                    android:textStyle="bold"
+                    android:textSize="16sp"
+                    />
+
 
                 <TextView
                     android:id="@+id/PestWeight"
@@ -60,10 +71,28 @@
                      />
 
                 <TextView
+                    android:id="@+id/PestbigHeight"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Height:"
+                    android:textStyle="bold"
+                    android:textSize="16sp"
+                    />
+
+                <TextView
                     android:id="@+id/PestHeight"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Height"
+                    />
+
+                <TextView
+                    android:id="@+id/PestbigCountry"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Country or Region:"
+                    android:textStyle="bold"
+                    android:textSize="16sp"
                     />
 
                 <TextView
@@ -79,7 +108,8 @@
 
         </LinearLayout>
 
-        <TextView
+
+        <!--<TextView
             android:id="@+id/Threat"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -115,7 +145,7 @@
             android:id="@+id/DealWithThem"
             android:layout_width="match_parent"
             android:layout_height="25dp"
-            android:text="How to deal with them"
+            android:text="Tips when you encountered:"
             android:textSize="18sp"
             android:textStyle="bold"/>
 
@@ -140,53 +170,267 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Tips"
-            android:textSize="16sp" />
-
-        <TextView
-            android:id="@+id/Score"
-            android:layout_width="match_parent"
-            android:layout_height="25dp"
-            android:text="Harm Score"
-            android:textSize="18sp"
-            android:textStyle="bold" />
-
-        <RatingBar
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:numStars="5"
-            android:stepSize="0.5"
-            android:id="@+id/rateScoreStar"/>
+            android:textSize="16sp" />-->
 
 
-    </LinearLayout>
-
-</ScrollView>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center"
-        android:layout_alignParentBottom="true"
-        android:orientation="vertical">
+        android:orientation="horizontal"
+        android:layout_marginTop="20dp"
+        android:layout_weight="1"
+        >
+
+        <ImageView
+            android:id="@+id/threatImage"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:background="@drawable/threatwhite"
+            android:layout_weight="1"/>
 
         <Button
-            android:id="@+id/showLocation_btn"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:text="Show Location "
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:id="@+id/threat_btn"
+            android:text="Threat "
             android:textSize="16sp"
-            android:layout_marginTop="10dp"/>
-
-        <Button
-            android:id="@+id/addLocation_btn"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:text="Add Location "
-            android:textSize="16sp" />
-
-
+            android:layout_weight="6"/>
     </LinearLayout>
-</RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="5dp"
+            android:layout_weight="1"
+            >
+
+            <ImageView
+                android:id="@+id/dietImage"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:background="@drawable/diet"
+                android:layout_weight="1"/>
+
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:id="@+id/Diet_btn"
+                android:text="Diet "
+                android:textSize="16sp"
+                android:layout_weight="6"/>
+
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="5dp"
+            android:layout_weight="1"
+            >
+
+            <ImageView
+                android:id="@+id/tipsImage"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:background="@drawable/tipswhite"
+                android:layout_weight="1"/>
+
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:id="@+id/Tips_btn"
+                android:text="Tips when you encountered "
+                android:textSize="16sp"
+                android:layout_weight="6"/>
+
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="5dp"
+            android:layout_weight="1"
+            >
+
+            <ImageView
+                android:id="@+id/interestImage"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:background="@drawable/interest"
+                android:layout_weight="1"/>
+
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:id="@+id/interest_btn"
+                android:text="Interesting Fact "
+                android:textSize="16sp"
+                android:layout_weight="6"/>
+
+        </LinearLayout>
+        
+        <TextView
+            android:id="@+id/Score"
+            android:layout_width="match_parent"
+            android:layout_height="25dp"
+            android:layout_marginTop="20dp"
+            android:gravity="center"
+            android:text="Harm Level"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <!--
+       <RatingBar
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:numStars="5"
+           android:stepSize="0.5"
+           android:id="@+id/rateScoreStar"/>-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="15dp"
+            android:layout_weight="1"
+            >
+
+            <ImageView
+                android:id="@+id/healthImage"
+                android:layout_width="0dp"
+                android:layout_height="80dp"
+                android:background="@drawable/healthy"
+                android:layout_weight="1"/>
+
+            <ProgressBar
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_gravity="center"
+                style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                android:id="@+id/progressbar"
+                android:layout_weight="2"/>
+
+            <ImageView
+                android:id="@+id/killImage"
+                android:layout_width="0dp"
+                android:layout_height="80dp"
+                android:background="@drawable/kill"
+                android:layout_weight="1"/>
+
+        </LinearLayout>
+
+       <!--
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginLeft="50dp"
+                    android:id="@+id/Diet_btn"
+                    android:text="Diet "
+                    android:textSize="16sp"/>
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginLeft="50dp"
+                    android:id="@+id/Tips_btn"
+                    android:text="Tips when you encountered "
+                    android:textSize="16sp"/>
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginLeft="50dp"
+                    android:id="@+id/interest_btn"
+                    android:text="Interesting Fact "
+                    android:textSize="16sp"/>
+                 <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="5dp"
+                    android:padding="8dp"
+                    android:layout_weight="1"
+
+                    >
+
+                     <ImageView
+                         android:id="@+id/threatImage"
+                         android:layout_width="0dp"
+                         android:layout_height="130dp"
+                         android:background="@drawable/threatwhite"
+                         android:layout_weight="1"/>
+
+                    <ImageView
+                        android:id="@+id/tipsImage"
+                        android:layout_width="0dp"
+                        android:layout_height="130dp"
+                        android:background="@drawable/tipswhite"
+                        android:layout_weight="1"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="5dp"
+                    android:padding="8dp"
+
+
+                    >
+
+                    <ImageView
+                        android:id="@+id/dietImage"
+                        android:layout_width="0dp"
+                        android:layout_height="130dp"
+                        android:background="@drawable/diet"
+                        android:layout_weight="1"/>
+
+                    <ImageView
+                        android:id="@+id/interestImage"
+                        android:layout_width="0dp"
+                        android:layout_height="130dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/interest"/>
+                </LinearLayout>-->
+
+
+
+      </LinearLayout>
+
+  </ScrollView>
+
+      <LinearLayout
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:gravity="center"
+          android:layout_alignParentBottom="true"
+          android:orientation="vertical">
+
+          <Button
+              android:id="@+id/showLocation_btn"
+              android:layout_width="match_parent"
+              android:layout_height="40dp"
+              android:text="Show Location "
+              android:textSize="16sp"
+              android:layout_marginTop="10dp"/>
+
+          <Button
+              android:id="@+id/addLocation_btn"
+              android:layout_width="match_parent"
+              android:layout_height="40dp"
+              android:text="Add Location "
+              android:textSize="16sp" />
+
+
+      </LinearLayout>
+  </RelativeLayout>
 
 
 

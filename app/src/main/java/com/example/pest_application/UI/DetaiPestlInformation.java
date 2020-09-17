@@ -15,6 +15,7 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -30,17 +31,18 @@ import com.example.pest_application.UI.showAll.MapsActivity_pest;
 import com.example.pest_application.UI.showAll.ShowAllPestsViewModel;
 
 public class DetaiPestlInformation extends Fragment {
-    private TextView PestName,PestCategory,PestWeight,PestHeight,PestCountry,Diet,show_Diet,DealWithThem,ActualDealWithThem,Tips,ActualTips,Score,Threat,show_Threat;
-    private ImageView PestImage;
+    private TextView PestbigCountry,PestbigHeight,PestbigWeight,PestName,PestCategory,PestWeight,PestHeight,PestCountry,Diet,show_Diet,DealWithThem,ActualDealWithThem,Tips,ActualTips,Score,Threat,show_Threat;
+    private ImageView PestImage,threatImage,tipsImage,dietImage,interestImage;
     private DetailViewModel detailViewModel;
     private Context context;
     private RatingBar rateScoreStar;
-    private Button showLocation_btn,addLocation_btn;
+    private Button showLocation_btn,addLocation_btn,threat_btn,Diet_btn,Tips_btn,interest_btn;
     private int idnum;
     private EditText inputAddress,inputState,inputCity;
     private String strinputAddress,strinputState,strinputCity,pestID;
     private AddPestLocationViewModel addPestLocationViewModel;
     private addtolocationtoDB addtoDBViewModel;
+    private ProgressBar progressbar;
     RequestOptions option =  new RequestOptions().centerCrop().placeholder(R.drawable.loading).error(R.drawable.loading);
 
     @Override
@@ -50,58 +52,188 @@ public class DetaiPestlInformation extends Fragment {
         View view = inflater.inflate(R.layout.movieview_fragment, container, false);
         addPestLocationViewModel =  new ViewModelProvider(this).get(AddPestLocationViewModel.class);
         context = getActivity();
-        rateScoreStar = view.findViewById(R.id.rateScoreStar);
+        //rateScoreStar = view.findViewById(R.id.rateScoreStar);
+        threat_btn =  view.findViewById(R.id.threat_btn);
+        Diet_btn = view.findViewById(R.id.Diet_btn);
+        progressbar = view.findViewById(R.id.progressbar);
+
+        PestbigCountry = view.findViewById(R.id.PestbigCountry);
+        PestbigHeight = view.findViewById(R.id.PestbigHeight);
+        PestbigWeight = view.findViewById(R.id.PestbigWeight);
+
+        Tips_btn = view.findViewById(R.id.Tips_btn);
+        interest_btn = view.findViewById(R.id.interest_btn);
         PestName =  view.findViewById(R.id.PestName);
         PestCategory = view.findViewById(R.id.PestCategory);
         PestWeight =  view.findViewById(R.id.PestWeight);
         PestHeight = view.findViewById(R.id.PestHeight);
         PestCountry =  view.findViewById(R.id.PestCountry);
+        PestImage = view.findViewById(R.id.PestImage);
+        Score = view.findViewById(R.id.Score);
+        showLocation_btn = view.findViewById(R.id.showLocation_btn);
+        threatImage = view.findViewById(R.id.threatImage);
+
+        tipsImage = view.findViewById(R.id.tipsImage);
+
+        dietImage = view.findViewById(R.id.dietImage);
+        interestImage = view.findViewById(R.id.interestImage);
+        /*
         Diet = view.findViewById(R.id.Diet);
         show_Diet =  view.findViewById(R.id.show_Diet);
         DealWithThem = view.findViewById(R.id.DealWithThem);
         ActualDealWithThem =  view.findViewById(R.id.ActualDealWithThem);
         Tips = view.findViewById(R.id.Tips);
         ActualTips =  view.findViewById(R.id.ActualTips);
-        Score = view.findViewById(R.id.Score);
-        PestImage = view.findViewById(R.id.PestImage);
-        showLocation_btn = view.findViewById(R.id.showLocation_btn);
         Threat =  view.findViewById(R.id.Threat);
-        show_Threat = view.findViewById(R.id.show_Threat);
+        show_Threat = view.findViewById(R.id.show_Threat);*/
         addLocation_btn = view.findViewById(R.id.addLocation_btn);
         detailViewModel = new ViewModelProvider(this).get(DetailViewModel.class);
         addtoDBViewModel = new ViewModelProvider(this).get(addtolocationtoDB.class);
         pestID = getArguments().getString("id");
         String name = getArguments().getString("pestName");
-        String category = getArguments().getString("PestCategory");
+        final String category = getArguments().getString("PestCategory");
+        if (category.equals("Weeds")){
+
+            dietImage.setImageResource(R.drawable.habit);
+            Diet_btn.setText("Habitat");
+
+        }
         String height = getArguments().getString("height");
         String weight = getArguments().getString("weight");
         String country = getArguments().getString("country");
-        String ways = getArguments().getString("ways");
-        String diet = getArguments().getString("diet");
-        String tips = getArguments().getString("tips");
+        final String ways = getArguments().getString("ways");
+        final String diet = getArguments().getString("diet");
+        final String tips = getArguments().getString("tips");
         String imageURL = getArguments().getString("imageURL");
-        String threat = getArguments().getString("threat");
+        final String threat = getArguments().getString("threat");
         String scoress = getArguments().getString("score");
         idnum = Integer.parseInt(getArguments().getString("id"));
         PestName.setText(name);
-        PestCategory.setText("Category: "+ category);
+        PestCategory.setText( category);
         if(!category.equals("Weeds")){
-            PestWeight.setText("Weight: "+ weight);
+            PestWeight.setText( weight);
         }
         else{
-            PestWeight.setVisibility(View.INVISIBLE);
+            PestWeight.setVisibility(View.GONE);
+            PestbigWeight.setVisibility(View.GONE);
         }
-        PestHeight.setText("Height: "+ height);
-        PestCountry.setText("Region: "+country);
-        show_Diet.setText(diet);
-        ActualTips.setText(tips);
-        ActualDealWithThem.setText(ways);
-        show_Threat.setText(threat);
+        PestHeight.setText( height);
+        PestCountry.setText(country);
+        //show_Diet.setText(diet);
+        //ActualTips.setText(tips);
+        //ActualDealWithThem.setText(ways);
+        //show_Threat.setText(threat);
         String url = imageURL;
         Glide.with(context).load(url).apply(option).into(PestImage);
         Double rateScore = Double.parseDouble(scoress);
-        float score = rateScore.floatValue();
-        rateScoreStar.setRating(score);
+        //float score = rateScore.floatValue();
+        //rateScoreStar.setRating(score);
+
+        progressbar.setProgress(rateScore.intValue() *24,true);
+
+
+
+        threat_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+                builder.setTitle("Threat");
+                builder.setMessage(threat);
+                builder.show();
+
+            }
+        });
+
+        Diet_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+                if(category.equals("Weeds")){
+                    builder.setTitle("Habitat ");
+                }
+                else {
+                    builder.setTitle("Diet ");
+                }
+
+                builder.setMessage(diet);
+                builder.show();
+
+            }
+        });
+
+        Tips_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+                builder.setTitle("Tips");
+                builder.setMessage(ways);
+                builder.show();
+
+            }
+        });
+
+        interest_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+                builder.setTitle("Interesting facts");
+                builder.setMessage(tips);
+                builder.show();
+
+            }
+        });
+
+        /*threatImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+                builder.setTitle("Threat");
+                builder.setMessage(diet);
+                builder.show();
+            }
+        });
+
+        dietImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+                if(category.equals("Weeds")){
+                    builder.setTitle("Habitat ");
+                }
+                else {
+                    builder.setTitle("Diet ");
+                }
+                builder.setMessage(diet);
+                builder.show();
+
+            }
+        });
+
+        tipsImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+                builder.setTitle("Tips");
+                builder.setMessage(ways);
+                builder.show();
+
+            }
+        });
+
+        interestImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+                builder.setTitle("Interesting facts");
+                builder.setMessage(tips);
+                builder.show();
+
+            }
+        });*/
+
+
+
+
         showLocation_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -111,11 +243,14 @@ public class DetaiPestlInformation extends Fragment {
             }
         });
 
+
+
         addLocation_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
                 builder.setTitle("Location");
+
                 //final Dialog dialog = new Dialog(getActivity());
                 //dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
                 //dialog.setCancelable(false);

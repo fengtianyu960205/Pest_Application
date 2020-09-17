@@ -13,10 +13,9 @@ public class AboutFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the View for this fragment
-        View view = inflater.inflate(R.layout.show_allpest, container, false);
-        //textView=view.findViewById(R.id.tv);
-        //textView.setText("This is HOME");
+
+        View view = inflater.inflate(R.layout.about, container, false);
+
         return view;
     }
 }
