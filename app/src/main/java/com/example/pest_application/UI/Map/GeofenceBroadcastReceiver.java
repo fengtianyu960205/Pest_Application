@@ -18,7 +18,8 @@ public class GeofenceBroadcastReceiver extends BroadcastReceiver {
         // TODO: This method is called when the BroadcastReceiver is receiving
         // an Intent broadcast.
 
-        //Toast.makeText(context, "permission denied ", Toast.LENGTH_SHORT).show();
+        NotificastionHelper notificastionHelper = new NotificastionHelper(context);
+
         GeofencingEvent geofencingEvent = GeofencingEvent.fromIntent(intent);
 
         if(geofencingEvent.hasError()){
@@ -33,12 +34,15 @@ public class GeofenceBroadcastReceiver extends BroadcastReceiver {
             switch(transitiontype){
                 case Geofence.GEOFENCE_TRANSITION_ENTER:
                     Toast.makeText(context, "Geofence enter ", Toast.LENGTH_SHORT).show();
+                    notificastionHelper.sendHighPriorityNotification("Geofence enter","",MapsActivity.class);
                     break;
                 case Geofence.GEOFENCE_TRANSITION_EXIT:
                     Toast.makeText(context, "Geofence exit ", Toast.LENGTH_SHORT).show();
+                    notificastionHelper.sendHighPriorityNotification("Geofence exit","",MapsActivity.class);
                     break;
                 case Geofence.GEOFENCE_TRANSITION_DWELL:
                     Toast.makeText(context, "Geofence dwell ", Toast.LENGTH_SHORT).show();
+                    notificastionHelper.sendHighPriorityNotification("Geofence dwell","",MapsActivity.class);
                     break;
         //}
 

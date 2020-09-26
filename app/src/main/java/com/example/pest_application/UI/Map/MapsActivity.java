@@ -49,7 +49,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private GoogleMap mMap;
     private GeofencingClient geofencingClient;
     private  GeofencingHelper geofencingHelper;
-    private  float GeofencingRadius = 200;
+    private  float GeofencingRadius = 1000;
     private GetAllPestLocationViewMOdel getAllPestLocationViewMOdel;
     private ArrayList<String[]> longlatilist = new ArrayList<>();
     private FusedLocationProviderClient mFusedLocationClient;
