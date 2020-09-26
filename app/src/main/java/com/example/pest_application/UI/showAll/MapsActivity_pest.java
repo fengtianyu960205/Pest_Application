@@ -79,8 +79,8 @@ public class MapsActivity_pest extends FragmentActivity implements OnMapReadyCal
                     mMap.addMarker(new MarkerOptions()
                             .position(latLng)
                             .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE))
-                            .title(location)
-                            .snippet("Latitude: " + lat + ", Longitude: " + lng));
+                            .title(location));
+                            //.snippet("Latitude: " + lat + ", Longitude: " + lng));
                     mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
                 }
             }

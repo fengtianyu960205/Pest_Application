@@ -1,10 +1,15 @@
 package com.example.pest_application.UI;
 
+import android.Manifest;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.location.Address;
+import android.location.Geocoder;
+import android.location.Location;
 import android.os.Bundle;
 import android.text.InputType;
 import android.util.Log;
@@ -20,6 +25,9 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
@@ -29,6 +37,14 @@ import com.bumptech.glide.request.RequestOptions;
 import com.example.pest_application.R;
 import com.example.pest_application.UI.showAll.MapsActivity_pest;
 import com.example.pest_application.UI.showAll.ShowAllPestsViewModel;
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+
+import java.io.IOException;
+import java.util.List;
+import java.util.Locale;
 
 public class DetaiPestlInformation extends Fragment {
     private TextView PestbigCountry,PestbigHeight,PestbigWeight,PestName,PestCategory,PestWeight,PestHeight,PestCountry,Diet,show_Diet,DealWithThem,ActualDealWithThem,Tips,ActualTips,Score,Threat,show_Threat;
@@ -44,6 +60,9 @@ public class DetaiPestlInformation extends Fragment {
     private addtolocationtoDB addtoDBViewModel;
     private ProgressBar progressbar;
     RequestOptions option =  new RequestOptions().centerCrop().placeholder(R.drawable.loading).error(R.drawable.loading);
+    private FusedLocationProviderClient mFusedLocationClient;
+    private String addressLocation,stateLocation,cityLocation;
+    private boolean flag = true;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -77,6 +96,7 @@ public class DetaiPestlInformation extends Fragment {
 
         dietImage = view.findViewById(R.id.dietImage);
         interestImage = view.findViewById(R.id.interestImage);
+        mFusedLocationClient = LocationServices.getFusedLocationProviderClient(context);
         /*
         Diet = view.findViewById(R.id.Diet);
         show_Diet =  view.findViewById(R.id.show_Diet);
@@ -248,13 +268,11 @@ public class DetaiPestlInformation extends Fragment {
         addLocation_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+                enableUserLocation();
+
+                 AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
                 builder.setTitle("Location");
 
-                //final Dialog dialog = new Dialog(getActivity());
-                //dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-                //dialog.setCancelable(false);
-                //dialog.setContentView(R.layout.addpestaddress);
                 View viewInflated = LayoutInflater.from(getContext()).inflate(R.layout.addpestaddress, (ViewGroup) getView(), false);
 
                 inputAddress = (EditText) viewInflated.findViewById(R.id.inputAddress);
@@ -315,4 +333,62 @@ public class DetaiPestlInformation extends Fragment {
         return view;
     }
 
+    public void enableUserLocation(){
+        if (ContextCompat.checkSelfPermission(context, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED){
+            getLocation();
+
+        }
+        else{
+            if(ActivityCompat.shouldShowRequestPermissionRationale(getActivity(),Manifest.permission.ACCESS_FINE_LOCATION)){
+                requestPermissions(new String[]{Manifest.permission.ACCESS_FINE_LOCATION},1000);
+            }
+            else{
+                requestPermissions(new String[]{Manifest.permission.ACCESS_FINE_LOCATION},1000);
+            }
+        }
+    }
+
+
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        //super.onRequestPermissionsResult(requestCode, permissions,  grantResults);
+        if(requestCode == 1000){
+            if(grantResults.length >0 && grantResults[0] == PackageManager.PERMISSION_GRANTED){
+                getLocation();
+
+            }
+            else{
+                Toast toast = Toast.makeText(context, "permission denied ", Toast.LENGTH_SHORT);
+                toast.show();
+            }
+        }
+    }
+
+    private void getLocation() {
+        mFusedLocationClient.getLastLocation().addOnCompleteListener(new OnCompleteListener<Location>() {
+            @Override
+            public void onComplete(@NonNull Task<Location> task) {
+                Location location = task.getResult();
+                if(location != null){
+                    Geocoder geocoder = new Geocoder(context, Locale.getDefault());
+                    try {
+                        List<Address> addresses = geocoder.getFromLocation(location.getLatitude(),location.getLongitude(),1);
+                        String[] pestLocation = addresses.get(0).getAddressLine(0).split(",");
+                        addressLocation = pestLocation[0];
+                        String[] cityState = pestLocation[1].split(" ");
+                        stateLocation =  cityState[cityState.length-2];
+                        cityLocation = addresses.get(0).getLocality();
+                        inputAddress.setText("Address:" + addressLocation);
+                        inputState.setText("State: " +stateLocation);
+                        inputCity.setText("City: "+cityLocation);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    //addressLocation,stateLocation,cityLocation;
+
+                }
+            }
+        });
+    }
 }
