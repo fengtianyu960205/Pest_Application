@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+    <TextView
+        android:id="@+id/mapTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_centerHorizontal="true"
+        android:textSize="20sp"
+        android:text="Pest Map "
+        android:textStyle="bold"
+        />
+
+    <ImageView
+        android:layout_below="@+id/mapTitle"
+        android:layout_marginTop="20dp"
+        android:id="@+id/map_imageView"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/mapimage" />
+
+    <TextView
+        android:layout_below="@+id/map_imageView"
+        android:layout_marginTop="20dp"
+        android:id="@+id/maptext"
+       android:textSize="16sp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Pest map is to let you know how far is the pest from you , if you enter an area where pests appear, you can get a notification.\n If you want to use our Pest Map function, you need to permit location service and background location service, otherwise you can only see the distribution of all pests in Australia bushland."/>
+
+    <Button
+        android:id="@+id/tourpestmao_btn"
+        android:layout_width="match_parent"
+        android:layout_alignParentBottom="true"
+        android:background="#FF5733"
+        android:layout_height="60dp"
+        android:layout_marginTop="60dp"
+        android:text="tour in our pest map "
+        android:textSize="16sp" />
+</RelativeLayout>

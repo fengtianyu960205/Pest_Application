@@ -15,6 +15,7 @@ import com.ashokvarma.bottomnavigation.BottomNavigationItem;
 import com.example.pest_application.UI.About.AboutFragment;
 import com.example.pest_application.UI.Home.HomeFragment;
 import com.example.pest_application.UI.Map.MapsActivity;
+import com.example.pest_application.UI.Map.mapfragment;
 import com.example.pest_application.UI.Report.ReportFragment;
 import com.example.pest_application.UI.Search.Search_pestFragment;
 import com.example.pest_application.UI.showAll.ShowAllPestsFragment;
@@ -50,6 +51,7 @@ public class MainActivity extends AppCompatActivity implements  BottomNavigation
                 .initialise();
         bottomNavigationBar.setTabSelectedListener(this);
 
+
         // toolbar = findViewById(R.id.toolbar);
         //setSupportActionBar(toolbar);
         //drawerLayout = findViewById(R.id.mainact_layout);
@@ -74,7 +76,7 @@ public class MainActivity extends AppCompatActivity implements  BottomNavigation
                 replaceHomeFragment(new ShowAllPestsFragment());
                 break;
             case 2:
-                startActivity(new Intent(getApplicationContext(), MapsActivity.class));
+                replaceHomeFragment(new mapfragment());
                 break;
             case 3:
                 replaceHomeFragment(new ReportFragment());

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+    <!--<androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:background="@color/colorPrimaryDark">
+
+
+
+
+         <TextView
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:text="Privacy Policy"
+             android:textSize="18sp"
+             android:textColor="@color/colorWhite"
+             android:layout_gravity="center"
+             android:id="@+id/toolbar_title" />
+
+
+     </androidx.appcompat.widget.Toolbar>-->
+
+     <WebView
+         android:layout_width="match_parent"
+         android:layout_height="match_parent"
+         android:layout_above="@+id/agreeDisgree"
+         android:id="@+id/privacyPolicy"/>
+
+    <LinearLayout
+        android:id="@+id/agreeDisgree"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/disagree_btn"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_weight="1"
+            android:text="Disagree"
+            android:textSize="16sp"
+            />
+
+        <Button
+            android:id="@+id/agree_btn"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:text="Agree"
+            android:textSize="16sp" />
+
+
+    </LinearLayout>
+
+ </RelativeLayout>

@@ -104,8 +104,6 @@
 
             </LinearLayout>
 
-
-
         </LinearLayout>
 
 
@@ -195,6 +193,9 @@
             android:id="@+id/threat_btn"
             android:text="Threat "
             android:textSize="16sp"
+            android:background="@drawable/button_background_color"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
             android:layout_weight="6"/>
     </LinearLayout>
 
@@ -219,6 +220,7 @@
                 android:id="@+id/Diet_btn"
                 android:text="Diet "
                 android:textSize="16sp"
+                android:background="@drawable/button_background_color"
                 android:layout_weight="6"/>
 
 
@@ -246,6 +248,7 @@
                 android:id="@+id/Tips_btn"
                 android:text="Tips when you encountered "
                 android:textSize="16sp"
+                android:background="@drawable/button_background_color"
                 android:layout_weight="6"/>
 
 
@@ -272,6 +275,7 @@
                 android:layout_height="50dp"
                 android:id="@+id/interest_btn"
                 android:text="Interesting Fact "
+                android:background="@drawable/button_background_color"
                 android:textSize="16sp"
                 android:layout_weight="6"/>
 
@@ -284,6 +288,7 @@
             android:layout_marginTop="20dp"
             android:gravity="center"
             android:text="Harm Level"
+            android:textColor="#FF3342"
             android:textSize="18sp"
             android:textStyle="bold" />
 

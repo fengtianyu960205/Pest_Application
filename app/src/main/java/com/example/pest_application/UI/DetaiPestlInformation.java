@@ -156,6 +156,7 @@ public class DetaiPestlInformation extends Fragment {
         threat_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                threat_btn.setSelected(true);
                 AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
                 builder.setTitle("Threat");
                 builder.setMessage(threat);
@@ -164,9 +165,12 @@ public class DetaiPestlInformation extends Fragment {
             }
         });
 
+
+
         Diet_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Diet_btn.setSelected(true);
                 AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
                 if(category.equals("Weeds")){
                     builder.setTitle("Habitat ");
@@ -184,6 +188,7 @@ public class DetaiPestlInformation extends Fragment {
         Tips_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Tips_btn.setSelected(true);
                 AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
                 builder.setTitle("Tips");
                 builder.setMessage(ways);
@@ -195,6 +200,7 @@ public class DetaiPestlInformation extends Fragment {
         interest_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                interest_btn.setSelected(true);
                 AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
                 builder.setTitle("Interesting facts");
                 builder.setMessage(tips);

@@ -7,6 +7,7 @@ import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
@@ -51,6 +52,7 @@ public class ReportFragment extends Fragment {
     private ArrayList<String[]> invasive = new ArrayList<>();
     private ArrayList<String[]> weeds = new ArrayList<>();
     private BarChart bargraph;
+    private ProgressBar reportprogressbar;
 
 
     @Override
@@ -60,6 +62,7 @@ public class ReportFragment extends Fragment {
         View view = inflater.inflate(R.layout.report, container, false);
         pieChart = view.findViewById(R.id.pieChart);
         welcometoreport = view.findViewById(R.id.welcometoreport);
+        reportprogressbar = view.findViewById(R.id.reportprogressbar);
         //barchart = view.findViewById(R.id.barchart);
         //pieChart.setVisibility(View.GONE);
         bargraph = view.findViewById(R.id.bargraph);
@@ -140,6 +143,7 @@ public class ReportFragment extends Fragment {
             dataEntries.add(new ValueDataEntry(StateName.get(i),number.get(i)));
         }
         pie.data(dataEntries);
+        reportprogressbar.setVisibility(View.INVISIBLE);
         pieChart.setChart(pie);
     }
 
