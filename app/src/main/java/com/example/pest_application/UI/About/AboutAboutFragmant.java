@@ -22,11 +22,10 @@ public class AboutAboutFragmant extends Fragment {
                              Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.about_about, container, false);
-        about_aboutWebview = view.findViewById(R.id.about_aboutWebview);
+        about_aboutWebview = (WebView)view.findViewById(R.id.about_aboutWebview);
         about_aboutWebview.getSettings().setJavaScriptEnabled(true);
         about_aboutWebview.setWebViewClient(new WebViewClient());
         about_aboutWebview.loadUrl("file:///android_asset/"+"about.html");
-
         return view;
     }
 }
