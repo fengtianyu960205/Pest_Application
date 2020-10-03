@@ -24,3 +24,10 @@ For Amazon Web Service
    Set up a new database name and password.)
 10. Click the new connection and view the operating board.
 11. Now you can use SQL code to operate your database by CRUD (create, read, update and delete).
+
+
+For deploy back end
+1.download lambdafunctionAWS file 
+2. copy each python code segemnt to AWS lambda function 
+3.deploy lambda function and create restful API URL in AWS
+4. Then you can use the restful API URL to get data in our database.
