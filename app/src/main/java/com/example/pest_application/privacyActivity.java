@@ -42,6 +42,7 @@ public class privacyActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(privacyActivity.this, MainActivity.class));
+                finish();
             }
         });
         disagree_btn.setOnClickListener(new View.OnClickListener() {

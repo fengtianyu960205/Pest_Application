@@ -67,18 +67,18 @@ public class HomeFragment extends Fragment implements  ShowAllPestsAdapter.OnIte
         pestsName.add("Adelaide");
         pestsName.add("Canberra");
 
-        String[] rabbit = new String[]{"1",
-                "European Rabbits",
-                "40cm",
-                "1.2-2.0kg",
-                "Great Britain/Ireland/Australia/Chile",
-                "Invasive species",
-                "Prey on grasses, young and succulent leaves,fescues, winter wheat, tree bark, blackberries and root vegetables.",
-                "Please report to local authorities or use chemical control approach (use sodium flouroacetate).",
-                "Rabbits are highly social animal. They have an unusual desigtive system and they able to countinously growing teeth.",
-                "https://i.loli.net/2020/09/11/xauY76FihjtflrA.png",
-                "They directly compete with livestock for pasture and which can seriously affect farming enterprises and cause irreversible land degradation.",
-                "3.5"};
+        String[] rabbit = new String[]{"13",
+                "Feral Pig",
+                "55-120cm",
+                "50-100kg",
+                "United Kingdom/United States/South America/Australia",
+                "Pest",
+                "You need to prepare clean towel, sterile bandage and antibiotic ointment: first place a clean towel over the injury to stop bleeding, wash the bite carefully with soap and water. Secondly, apply a sterile bandage to the woud and finally apply antibiotic ointment to prevent infection.",
+                "DO NOT approach or attempt to feed the animal. Keep a safe distance and DO NOT corner or provoke the animal. Be calm and move slowly away from the animal.",
+                "Pigs are highly intelligent and have been shown to communicate as many as 20 different vocalisations to express their thoughts!",
+                "https://i.loli.net/2020/09/11/hKdWe6QpXcfEGN9.png",
+                "Feral pig brings substantial damage to Australian environment. They carry disease of leptospirosis, which caused more than $106 million economic losses.",
+                "5"};
 
         String[] fox = new String[]{"2",
                 "European Fox",

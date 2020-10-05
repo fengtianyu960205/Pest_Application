@@ -191,7 +191,7 @@
             android:layout_width="0dp"
             android:layout_height="50dp"
             android:id="@+id/threat_btn"
-            android:text="Threat "
+            android:text="What Threats Does It Brought"
             android:textSize="16sp"
             android:background="@drawable/button_background_color"
             android:focusable="true"
@@ -211,14 +211,14 @@
                 android:id="@+id/dietImage"
                 android:layout_width="0dp"
                 android:layout_height="50dp"
-                android:background="@drawable/diet"
+                android:background="@drawable/hospital"
                 android:layout_weight="1"/>
 
             <Button
                 android:layout_width="0dp"
                 android:layout_height="50dp"
                 android:id="@+id/Diet_btn"
-                android:text="Diet "
+                android:text="First Aid Precautions"
                 android:textSize="16sp"
                 android:background="@drawable/button_background_color"
                 android:layout_weight="6"/>
@@ -274,7 +274,7 @@
                 android:layout_width="0dp"
                 android:layout_height="50dp"
                 android:id="@+id/interest_btn"
-                android:text="Interesting Fact "
+                android:text="Some Facts About Them"
                 android:background="@drawable/button_background_color"
                 android:textSize="16sp"
                 android:layout_weight="6"/>

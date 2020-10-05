@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity implements  BottomNavigation
         bottomNavigationBar = (BottomNavigationBar) findViewById(R.id.bottom_navigation_bar);
         bottomNavigationBar
                 .addItem(new BottomNavigationItem(R.drawable.ic_home_black_24dp, "Search").setActiveColor(R.color.colorPrimaryDark))
-                .addItem(new BottomNavigationItem(R.drawable.ic_photo_library_black_24dp, "Pests").setActiveColor(R.color.colorPrimaryDark))
+                .addItem(new BottomNavigationItem(R.drawable.ic_photo_library_black_24dp, "Species").setActiveColor(R.color.colorPrimaryDark))
                 .addItem(new BottomNavigationItem(R.drawable.ic_location_on_black_24dp, "Map").setActiveColor(R.color.colorPrimaryDark))
                 .addItem(new BottomNavigationItem(R.drawable.ic_show_chart_black_24dp, "Report").setActiveColor(R.color.colorPrimaryDark))
                 .addItem(new BottomNavigationItem(R.drawable.ic_help_black_24dp, "About").setActiveColor(R.color.colorPrimaryDark))

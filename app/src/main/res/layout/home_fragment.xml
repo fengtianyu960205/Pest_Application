@@ -10,8 +10,8 @@
 
     <ImageView
         android:id="@+id/home_imageView"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
+        android:layout_width="180dp"
+        android:layout_height="180dp"
         android:layout_gravity="center"
         android:src="@drawable/pestcrewimage"/>
 
@@ -21,7 +21,7 @@
         android:id="@+id/welcome"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="15dp"
 
         android:layout_gravity="center_horizontal"
         android:textSize="20sp"
@@ -65,7 +65,8 @@
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
                 android:iconifiedByDefault="false"
-                android:queryHint="pest name or city" />
+                android:queryHint="search destination or  pest"
+                />
 
             <Spinner
                 android:id="@+id/filter_state"
@@ -107,7 +108,7 @@
             android:layout_marginTop="20dp"
             android:layout_gravity="center_horizontal"
             android:textSize="20sp"
-            android:text="Most User Search "
+            android:text="Search trending"
             android:textStyle="bold"
             />
 

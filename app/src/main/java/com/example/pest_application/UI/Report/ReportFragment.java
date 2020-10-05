@@ -142,6 +142,7 @@ public class ReportFragment extends Fragment {
         for (int i = 0; i < StateName.size(); i++ ){
             dataEntries.add(new ValueDataEntry(StateName.get(i),number.get(i)));
         }
+
         pie.data(dataEntries);
         reportprogressbar.setVisibility(View.INVISIBLE);
         pieChart.setChart(pie);
@@ -174,13 +175,11 @@ public class ReportFragment extends Fragment {
         xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
         xAxis.setGranularity(1);
         xAxis.setGranularityEnabled(true);
-        //xAxis.setTextSize(0.44f);
+
 
         bargraph.setDragEnabled(true);
         bargraph.setVisibleXRangeMaximum(3);
-        //Description description = new Description();
-        //description.setText("Month");
-        //bargraph.setDescription(description);
+
         float barSpace = 0.08f;
         float groupSpace = 0.44f;
         theData.setBarWidth(0.10f);

@@ -176,7 +176,7 @@ public class DetaiPestlInformation extends Fragment {
                     builder.setTitle("Habitat ");
                 }
                 else {
-                    builder.setTitle("Diet ");
+                    builder.setTitle("First Aid");
                 }
 
                 builder.setMessage(diet);
@@ -202,7 +202,7 @@ public class DetaiPestlInformation extends Fragment {
             public void onClick(View v) {
                 interest_btn.setSelected(true);
                 AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-                builder.setTitle("Interesting facts");
+                builder.setTitle("Some Facts About Them");
                 builder.setMessage(tips);
                 builder.show();
 
@@ -295,9 +295,10 @@ public class DetaiPestlInformation extends Fragment {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.dismiss();
-                        strinputAddress = inputAddress.getText().toString().trim();
-                        strinputState = inputState.getText().toString().trim();
-                        strinputCity = inputCity.getText().toString().trim();
+                        strinputAddress = inputAddress.getText().toString().trim().split(":")[1];
+                        strinputState = inputState.getText().toString().trim().split(":")[1];
+                        strinputCity = inputCity.getText().toString().trim().split(":")[1];
+                        String a = strinputCity;
 
                         addPestLocationViewModel.getPestLocationTask(strinputAddress+" "+strinputCity+" "+strinputState);
                         addPestLocationViewModel.getLiveDatapestLngLog().observe(getViewLifecycleOwner(), new Observer<Double[]>() {
@@ -381,13 +382,16 @@ public class DetaiPestlInformation extends Fragment {
                     try {
                         List<Address> addresses = geocoder.getFromLocation(location.getLatitude(),location.getLongitude(),1);
                         String[] pestLocation = addresses.get(0).getAddressLine(0).split(",");
-                        addressLocation = pestLocation[0];
-                        String[] cityState = pestLocation[1].split(" ");
-                        stateLocation =  cityState[cityState.length-2];
-                        cityLocation = addresses.get(0).getLocality();
-                        inputAddress.setText("Address:" + addressLocation);
-                        inputState.setText("State: " +stateLocation);
-                        inputCity.setText("City: "+cityLocation);
+                        if(addresses.get(0).getCountryName().equals("Australia")){
+                            addressLocation = pestLocation[0];
+                            String[] cityState = pestLocation[1].split(" ");
+                            stateLocation =  cityState[cityState.length-2];
+                            cityLocation = addresses.get(0).getLocality();
+                            inputAddress.setText("Address:" + addressLocation);
+                            inputState.setText("State: " +stateLocation);
+                            inputCity.setText("City: "+cityLocation);
+                        }
+
                     } catch (IOException e) {
                         e.printStackTrace();
                     }

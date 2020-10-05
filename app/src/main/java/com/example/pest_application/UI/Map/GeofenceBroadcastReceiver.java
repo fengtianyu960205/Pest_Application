@@ -33,16 +33,16 @@ public class GeofenceBroadcastReceiver extends BroadcastReceiver {
 
             switch(transitiontype){
                 case Geofence.GEOFENCE_TRANSITION_ENTER:
-                    Toast.makeText(context, "Geofence enter ", Toast.LENGTH_SHORT).show();
-                    notificastionHelper.sendHighPriorityNotification("Geofence enter","",MapsActivity.class);
+                    Toast.makeText(context, "You enter the area where pest or weeds appear", Toast.LENGTH_SHORT).show();
+                    notificastionHelper.sendHighPriorityNotification("You enter the area where pest or weeds appear","",MapsActivity.class);
                     break;
                 case Geofence.GEOFENCE_TRANSITION_EXIT:
-                    Toast.makeText(context, "Geofence exit ", Toast.LENGTH_SHORT).show();
-                    notificastionHelper.sendHighPriorityNotification("Geofence exit","",MapsActivity.class);
+                    Toast.makeText(context, "You exit the area where pest or weeds appear ", Toast.LENGTH_SHORT).show();
+                    notificastionHelper.sendHighPriorityNotification("You exit the area where pest or weeds appear ","",MapsActivity.class);
                     break;
                 case Geofence.GEOFENCE_TRANSITION_DWELL:
-                    Toast.makeText(context, "Geofence dwell ", Toast.LENGTH_SHORT).show();
-                    notificastionHelper.sendHighPriorityNotification("Geofence dwell","",MapsActivity.class);
+                    Toast.makeText(context, "You stay in the area where pest or weeds appear ", Toast.LENGTH_SHORT).show();
+                    notificastionHelper.sendHighPriorityNotification("You stay in the area where pest or weeds appear","",MapsActivity.class);
                     break;
         //}
 

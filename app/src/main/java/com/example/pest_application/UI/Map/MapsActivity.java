@@ -94,6 +94,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     public void enableUserLocation(){
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED){
             mMap.setMyLocationEnabled(true);
+            mMap.getUiSettings().setMyLocationButtonEnabled(true);
             if(ContextCompat.checkSelfPermission(MapsActivity.this, Manifest.permission.ACCESS_BACKGROUND_LOCATION) == PackageManager.PERMISSION_GRANTED){
                 approvePermission();
             }
@@ -122,6 +123,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         if(requestCode == 1000){
             if(grantResults.length >0 && grantResults[0] == PackageManager.PERMISSION_GRANTED){
                 mMap.setMyLocationEnabled(true);
+                mMap.getUiSettings().setMyLocationButtonEnabled(true);
                 if(ContextCompat.checkSelfPermission(MapsActivity.this, Manifest.permission.ACCESS_BACKGROUND_LOCATION) == PackageManager.PERMISSION_GRANTED){
                     approvePermission();
                 }
@@ -146,7 +148,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         if(requestCode == 1001){
             if(grantResults.length >0 && grantResults[0] == PackageManager.PERMISSION_GRANTED){
 
-                Toast.makeText(this, "Geofence permit ", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(this, "Geofence permit ", Toast.LENGTH_SHORT).show();
                 approvePermission();
             }
             //else if(grantResults.length >0 && grantResults[1] == PackageManager.PERMISSION_GRANTED){
@@ -253,11 +255,19 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     Geocoder geocoder = new Geocoder(getApplicationContext(), Locale.getDefault());
                     try {
                         List<Address> addresses = geocoder.getFromLocation(location.getLatitude(),location.getLongitude(),1);
-                        String[] pestLocation = addresses.get(0).getAddressLine(0).split(",");
-                        String[] cityState = pestLocation[1].split(" ");
-                        state =  cityState[cityState.length-2];
-                        getAllPestLocationViewMOdel.GetPestLocaTa(state);
-                        getpestlocation();
+                        if(addresses.get(0).getCountryName().equals("Australia")){
+                            String[] pestLocation = addresses.get(0).getAddressLine(0).split(",");
+                            String[] cityState = pestLocation[1].split(" ");
+                            state =  cityState[cityState.length-2];
+                            getAllPestLocationViewMOdel.GetPestLocaTa(state);
+                            getpestlocation();
+                        }
+                        else{
+                            state = "nostate";
+                            getAllPestLocationViewMOdel.GetPestLocaTa(state);
+                            getpestAlllocation();
+                        }
+
 
 
                     } catch (IOException e) {
