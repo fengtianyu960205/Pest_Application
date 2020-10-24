@@ -24,8 +24,8 @@ public class privacyActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.privacy);
         privacyPolicy = (WebView) findViewById(R.id.privacyPolicy);
-        disagree_btn =  findViewById(R.id.disagree_btn);
-        agree_btn =  findViewById(R.id.agree_btn);
+        //disagree_btn =  findViewById(R.id.disagree_btn);
+        //agree_btn =  findViewById(R.id.agree_btn);
         //toolbar = findViewById(R.id.toolbar);
         //setSupportActionBar(toolbar);
         //toolbar.setToolBarTitle("Privacy Policy");

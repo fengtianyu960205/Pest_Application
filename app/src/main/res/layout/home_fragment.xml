@@ -65,7 +65,7 @@
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
                 android:iconifiedByDefault="false"
-                android:queryHint="search destination or  pest"
+                android:queryHint="search destination or pest"
                 />
 
             <Spinner
@@ -80,6 +80,9 @@
             android:layout_width="100dp"
             android:layout_height="50dp"
             android:layout_gravity="center"
+            android:backgroundTint="#0078ff"
+            android:textColor="@color/colorWhite"
+            android:background="@drawable/round_button"
             android:text="Search"/>
 
         <TextView
@@ -88,7 +91,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:text="Result Not Found"
+            android:text="There is no pest in this city"
             android:textSize="20sp"
             android:visibility="gone"/>
 

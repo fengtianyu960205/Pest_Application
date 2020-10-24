@@ -7,6 +7,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
@@ -63,6 +64,7 @@ public class DetaiPestlInformation extends Fragment {
     private FusedLocationProviderClient mFusedLocationClient;
     private String addressLocation,stateLocation,cityLocation;
     private boolean flag = true;
+    private TextView harmscoretext;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -72,6 +74,7 @@ public class DetaiPestlInformation extends Fragment {
         addPestLocationViewModel =  new ViewModelProvider(this).get(AddPestLocationViewModel.class);
         context = getActivity();
         //rateScoreStar = view.findViewById(R.id.rateScoreStar);
+        harmscoretext = view.findViewById(R.id.harmscoretext);
         threat_btn =  view.findViewById(R.id.threat_btn);
         Diet_btn = view.findViewById(R.id.Diet_btn);
         progressbar = view.findViewById(R.id.progressbar);
@@ -150,6 +153,19 @@ public class DetaiPestlInformation extends Fragment {
         //rateScoreStar.setRating(score);
 
         progressbar.setProgress(rateScore.intValue() *24,true);
+        Integer scorenum = rateScore.intValue() * 20;
+        String scoreStr = scorenum.toString();
+        harmscoretext.setText(scoreStr+"%");
+        if (scorenum>75) {
+            harmscoretext.setTextColor(Color.RED);
+        }
+        else if(scorenum>50 && scorenum< 75){
+            harmscoretext.setTextColor(Color.rgb(255,165,0));
+        }
+        else{
+            harmscoretext.setTextColor(Color.BLACK);
+        }
+
 
 
 
@@ -209,53 +225,6 @@ public class DetaiPestlInformation extends Fragment {
             }
         });
 
-        /*threatImage.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-                builder.setTitle("Threat");
-                builder.setMessage(diet);
-                builder.show();
-            }
-        });
-
-        dietImage.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-                if(category.equals("Weeds")){
-                    builder.setTitle("Habitat ");
-                }
-                else {
-                    builder.setTitle("Diet ");
-                }
-                builder.setMessage(diet);
-                builder.show();
-
-            }
-        });
-
-        tipsImage.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-                builder.setTitle("Tips");
-                builder.setMessage(ways);
-                builder.show();
-
-            }
-        });
-
-        interestImage.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-                builder.setTitle("Interesting facts");
-                builder.setMessage(tips);
-                builder.show();
-
-            }
-        });*/
 
 
 
@@ -278,6 +247,7 @@ public class DetaiPestlInformation extends Fragment {
 
                  AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
                 builder.setTitle("Location");
+
 
                 View viewInflated = LayoutInflater.from(getContext()).inflate(R.layout.addpestaddress, (ViewGroup) getView(), false);
 
@@ -329,8 +299,11 @@ public class DetaiPestlInformation extends Fragment {
                         dialog.cancel();
                     }
                 });
+                AlertDialog alert = builder.create();
+                alert.setCanceledOnTouchOutside(false);
+                alert.show();
 
-                builder.show();
+                //builder.show();
                // dialog.show();
             }
         });

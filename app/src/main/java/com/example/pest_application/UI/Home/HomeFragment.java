@@ -1,13 +1,18 @@
 package com.example.pest_application.UI.Home;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -15,6 +20,7 @@ import android.widget.EditText;
 import android.widget.SearchView;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
@@ -48,6 +54,9 @@ public class HomeFragment extends Fragment implements  ShowAllPestsAdapter.OnIte
     private EditText search_Name;
     private int flag;
     private String choosedname = "";
+    private WebView privacyPolicy;
+    private Button disagree_btn;
+    private Button  agree_btn;
 
     public HomeFragment() {
         // Required empty public constructor
@@ -169,77 +178,6 @@ public class HomeFragment extends Fragment implements  ShowAllPestsAdapter.OnIte
         });
 
 
-
-
-
-
-
-
-
-        /*
-        searchPest_btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                if(search_Name.getText().toString().trim().length() == 0 && !state.equals("State") ){
-                    flag = 1;
-                }
-                else if (search_Name.getText().toString().trim().length() !=0 ){
-                    flag = 2;
-                    closeKeyBoard();
-                }
-                else{
-                    flag = 3;
-                }
-                //Log.d("sign_in", "json: " +state);
-                if (flag == 1){
-                    searchPestByStateViewModel.GetPestInfoTa(state);
-                    searchPestByStateViewModel.getPestInfo().observe(getViewLifecycleOwner(), new Observer<ArrayList>() {
-                    @Override
-                    public void onChanged(ArrayList arrayList) {
-                        pests = arrayList;
-                        if (pests.size() != 0) {
-                            //Log.d("sign_in", "json: " +state);
-                            resultnotfound.setVisibility(View.GONE);
-                            adpater.setPest(pests);
-                        } else {
-                            //Log.d("sign_in", "json: " +state);
-                            pests = new ArrayList<>();
-                            adpater.setPest(pests);
-                            resultnotfound.setVisibility(View.VISIBLE);
-                        }
-                    }
-                     });
-                }
-                else if(flag == 2){
-
-                    searchPestByCategoryNameViewModel.GetPestInfoTa(search_Name.getText().toString().trim()+","+state);
-                    searchPestByCategoryNameViewModel.getPestInfo().observe(getViewLifecycleOwner(), new Observer<ArrayList>() {
-                        //Log.d("sign_in", "json: " +flag);
-                        @Override
-                        public void onChanged(ArrayList arrayList) {
-                            pests = arrayList;
-                            if (pests.size() != 0) {
-                                Log.d("sign_in", "jssdsdsdsdson: " +pests.size());
-                                resultnotfound.setVisibility(View.GONE);
-                                adpater.setPest(pests);
-                            } else {
-                                //Log.d("sign_in", "json: " +4);
-                                pests = new ArrayList<>();
-                                adpater.setPest(pests);
-                                resultnotfound.setVisibility(View.VISIBLE);
-                            }
-
-                        }
-                    });
-                }
-                else{
-                    pests = new ArrayList<>();
-                    adpater.setPest(pests);
-                    resultnotfound.setVisibility(View.VISIBLE);
-                }
-            }
-        });*/
         searchPest_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -312,6 +250,17 @@ public class HomeFragment extends Fragment implements  ShowAllPestsAdapter.OnIte
             }
         });
 
+        SharedPreferences sharedPreferences = context.getSharedPreferences("MySharedPref",context.MODE_PRIVATE);
+        int password = sharedPreferences.getInt("password", 0);
+        if(password==0){
+            passwordDialog();
+        }
+
+        int homefragmenttag = sharedPreferences.getInt("homeFragment", 0);
+        if(password!=0 && (homefragmenttag == 2 || homefragmenttag==0)){
+            getprivacydialog();
+        }
+
 
 
 
@@ -349,6 +298,106 @@ public class HomeFragment extends Fragment implements  ShowAllPestsAdapter.OnIte
     public void whenClickpestName(int position) {
         searchView.setQuery(pestsName.get(position),false);
         //choosedname = pestsName.get(position);
+    }
+
+    public void getprivacydialog(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+        //builder.setTitle("Location");
+
+
+        View viewInflated = LayoutInflater.from(getContext()).inflate(R.layout.privacy, (ViewGroup) getView(), false);
+
+       // inputAddress = (EditText) viewInflated.findViewById(R.id.inputAddress);
+       // inputState = (EditText) viewInflated.findViewById(R.id.inputState);
+       // inputCity= (EditText) viewInflated.findViewById(R.id.inputCity);
+
+        privacyPolicy = (WebView) viewInflated.findViewById(R.id.privacyPolicy);
+        privacyPolicy.getSettings().setJavaScriptEnabled(true);
+        privacyPolicy.setWebViewClient(new WebViewClient());
+        privacyPolicy.loadUrl("file:///android_asset/"+"privacy.html");
+        //disagree_btn =  viewInflated.findViewById(R.id.disagree_btn);
+        //agree_btn =  viewInflated.findViewById(R.id.agree_btn);
+        //final EditText input = new EditText(context);
+
+        //input.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+        // builder.setView(input);
+        builder.setView(viewInflated);
+
+        builder.setPositiveButton("agree", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                SharedPreferences sharedPreferences = context.getSharedPreferences("MySharedPref",context.MODE_PRIVATE);
+                SharedPreferences.Editor myEdit = sharedPreferences.edit();
+                myEdit.putInt("homeFragment",1);
+                myEdit.commit();
+                dialog.dismiss();
+
+
+            }
+        });
+        builder.setNegativeButton("disagree", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                SharedPreferences sharedPreferences = context.getSharedPreferences("MySharedPref",context.MODE_PRIVATE);
+                SharedPreferences.Editor myEdit = sharedPreferences.edit();
+                myEdit.putInt("homeFragment",2);
+                dialog.cancel();
+                getActivity().finish();
+            }
+        });
+
+        AlertDialog alert = builder.create();
+        alert.setCanceledOnTouchOutside(false);
+        alert.show();
+
+    }
+
+    @Override
+    public void onDestroy() {
+
+        super.onDestroy();
+    }
+
+    public void passwordDialog(){
+
+
+        final EditText inputEditTextField= new EditText(getContext());
+        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+
+        builder.setTitle("Password");
+        builder.setMessage("Input Password");
+        builder.setView(inputEditTextField);
+        builder.setPositiveButton("OK",null);
+
+        final AlertDialog alert = builder.create();
+        alert.setOnShowListener(new DialogInterface.OnShowListener() {
+            @Override
+            public void onShow(DialogInterface dialog) {
+                Button positiveButton = alert.getButton(AlertDialog.BUTTON_POSITIVE);
+                positiveButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        String editTextInput = inputEditTextField.getText().toString();
+                        if (editTextInput.equals("ME10")) {
+                            SharedPreferences sharedPreferences = context.getSharedPreferences("MySharedPref", context.MODE_PRIVATE);
+                            SharedPreferences.Editor myEdit = sharedPreferences.edit();
+                            myEdit.putInt("password", 10);
+                            myEdit.commit();
+                            alert.dismiss();
+                            //SharedPreferences sharedPreferences = context.getSharedPreferences("MySharedPref",context.MODE_PRIVATE);
+                            int number = sharedPreferences.getInt("homeFragment", 0);
+                            if (number == 0) {
+                                getprivacydialog();
+                            }
+                        }
+                    }
+                });
+            }
+        });
+
+
+        alert.setCanceledOnTouchOutside(false);
+        alert.show();
     }
 
 }

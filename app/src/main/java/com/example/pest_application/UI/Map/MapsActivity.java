@@ -10,6 +10,7 @@ import androidx.lifecycle.ViewModelProvider;
 import android.Manifest;
 import android.app.PendingIntent;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.location.Address;
@@ -84,6 +85,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
         mMap.animateCamera(CameraUpdateFactory.zoomTo(4));
+
         enableUserLocation();
 
         // Add a marker in Sydney and move the camera
@@ -95,6 +97,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED){
             mMap.setMyLocationEnabled(true);
             mMap.getUiSettings().setMyLocationButtonEnabled(true);
+
             if(ContextCompat.checkSelfPermission(MapsActivity.this, Manifest.permission.ACCESS_BACKGROUND_LOCATION) == PackageManager.PERMISSION_GRANTED){
                 approvePermission();
             }
@@ -122,8 +125,12 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         if(requestCode == 1000){
             if(grantResults.length >0 && grantResults[0] == PackageManager.PERMISSION_GRANTED){
-                mMap.setMyLocationEnabled(true);
-                mMap.getUiSettings().setMyLocationButtonEnabled(true);
+                //mMap.setMyLocationEnabled(true);
+                //mMap.getUiSettings().setMyLocationButtonEnabled(true);
+                Intent intent = getIntent();
+                finish();
+                startActivity(intent);
+                /*
                 if(ContextCompat.checkSelfPermission(MapsActivity.this, Manifest.permission.ACCESS_BACKGROUND_LOCATION) == PackageManager.PERMISSION_GRANTED){
                     approvePermission();
                 }
@@ -134,7 +141,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     else{
                         ActivityCompat.requestPermissions(MapsActivity.this,new String[]{Manifest.permission.ACCESS_BACKGROUND_LOCATION},1001);
                     }
-                }
+                }*/
 
 
             }
@@ -156,7 +163,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             //    approvePermission();
             //}
             else{
-                Toast.makeText(this, "you must choose allow all the time then the geo fence can work ", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "you must choose allow all the time then the geo fence can work ", Toast.LENGTH_LONG).show();
                 state = "nostate";
                 getAllPestLocationViewMOdel.GetPestLocaTa(state);
                 getpestAlllocation();

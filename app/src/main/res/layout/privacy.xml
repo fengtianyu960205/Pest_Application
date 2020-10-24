@@ -24,39 +24,43 @@
 
 
      </androidx.appcompat.widget.Toolbar>-->
-
-     <WebView
-         android:layout_width="match_parent"
-         android:layout_height="match_parent"
-         android:layout_above="@+id/agreeDisgree"
-         android:id="@+id/privacyPolicy"/>
-
-    <LinearLayout
-        android:id="@+id/agreeDisgree"
+    <WebView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:layout_alignParentBottom="true"
-        android:orientation="horizontal">
+        android:layout_height="400dp"
+        android:id="@+id/privacyPolicy"/>
+    <!--
+        <WebView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/agreeDisgree"
+            android:id="@+id/privacyPolicy"/>
 
-        <Button
-            android:id="@+id/disagree_btn"
-            android:layout_width="0dp"
-            android:layout_height="40dp"
-            android:layout_weight="1"
-            android:text="Disagree"
-            android:textSize="16sp"
-            />
+           <LinearLayout
+               android:id="@+id/agreeDisgree"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:gravity="center"
+               android:layout_alignParentBottom="true"
+               android:orientation="horizontal">
 
-        <Button
-            android:id="@+id/agree_btn"
-            android:layout_weight="1"
-            android:layout_width="0dp"
-            android:layout_height="40dp"
-            android:text="Agree"
-            android:textSize="16sp" />
+               <Button
+                   android:id="@+id/disagree_btn"
+                   android:layout_width="0dp"
+                   android:layout_height="40dp"
+                   android:layout_weight="1"
+                   android:text="Disagree"
+                   android:textSize="16sp"
+                   />
+
+               <Button
+                   android:id="@+id/agree_btn"
+                   android:layout_weight="1"
+                   android:layout_width="0dp"
+                   android:layout_height="40dp"
+                   android:text="Agree"
+                   android:textSize="16sp" />
 
 
-    </LinearLayout>
+           </LinearLayout>-->
 
- </RelativeLayout>
+     </RelativeLayout>
